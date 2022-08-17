@@ -144,11 +144,3 @@ namespace AzureMySqlExample
 }
 
 
-        
-
-
-
-
-
-
-
