@@ -15,10 +15,10 @@ namespace AzureMySqlExample
         {
             var builder = new MySqlConnectionStringBuilder
             {
-                Server = "mysql-flex-1.mysql.database.azure.com",
-                Database = "globalstatus",
-                UserID = "myadmin",
-                Password = "666666Xk",
+                Server = "",
+                Database = "",
+                UserID = "",
+                Password = "",
                 SslMode = MySqlSslMode.Required,
             };
 
