@@ -1,5 +1,5 @@
 
------Please change these parameters in the code to connect to your Azure MySQL.
+----- Please set these parameters in Program.cs to connect to your own Azure MySQL -----
 
 Server = "YOUR_SERVER_NAME",
 Database = "YOUR_DATABASE",
