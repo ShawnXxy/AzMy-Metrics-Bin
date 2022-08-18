@@ -102,7 +102,7 @@ namespace AzureMySqlExample
                 Server = "mysql-flex-1.mysql.database.azure.com",
                 Database = "globalstatus",
                 UserID = "myadmin",
-                Password = "666666Xk",
+                Password = "",
                 SslMode = MySqlSslMode.Required,
             };
             using (var conn = new MySqlConnection(builder.ConnectionString))
