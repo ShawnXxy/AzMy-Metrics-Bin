@@ -30,7 +30,7 @@ namespace AzureMySqlExample
                 using (var command = conn.CreateCommand())   // CreateCommand:sets the CommandText property
                 {
                     
-                //step 1: Create a table to restore the global status
+                //step 1: Create a table to store the global status
                     
                     command.CommandText = "DROP TABLE IF EXISTS my_global_status;";
                     await command.ExecuteNonQueryAsync();  // run the database commands
@@ -40,7 +40,7 @@ namespace AzureMySqlExample
                     await command.ExecuteNonQueryAsync();
                     Console.WriteLine("Finished creating table");
                     
-                //step 2: Insert the variables selected from information_schema.global_status table to my_global_status.
+                //step 2: Insert the variables selected from performance_schema.global_status/information_schema.global_status table to my_global_status.
 
                     command.CommandText = @"INSERT INTO my_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
                     int rowCount = await command.ExecuteNonQueryAsync();
@@ -53,11 +53,10 @@ namespace AzureMySqlExample
                         (select metric_name,origin_metric_value from globalstatus.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
 
 
-                    // if second parameter is true：append
-
                     using (var reader = await command.ExecuteReaderAsync())
                     {
 
+                        // if second parameter is true：append
                         StreamWriter writer = new StreamWriter(@"/home/azureuser/AzureMySqlExample/mysql_global_status.log",true);  
                         while (await reader.ReadAsync())
                         {
