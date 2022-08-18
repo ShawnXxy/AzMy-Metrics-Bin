@@ -1,0 +1,6 @@
+/workspaces/Azure-MySQL-Metrics/bin/Release/net6.0/publish/AzureMySqlExample
+/workspaces/Azure-MySQL-Metrics/bin/Release/net6.0/publish/AzureMySqlExample.dll
+/workspaces/Azure-MySQL-Metrics/bin/Release/net6.0/publish/AzureMySqlExample.deps.json
+/workspaces/Azure-MySQL-Metrics/bin/Release/net6.0/publish/AzureMySqlExample.runtimeconfig.json
+/workspaces/Azure-MySQL-Metrics/bin/Release/net6.0/publish/AzureMySqlExample.pdb
+/workspaces/Azure-MySQL-Metrics/bin/Release/net6.0/publish/MySqlConnector.dll

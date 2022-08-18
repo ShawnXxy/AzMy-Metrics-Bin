@@ -1,0 +1,105 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "MySqlConnector/2.1.12": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MySqlConnector/2.1.12": {
+      "sha512": "XIYN95wlj6oIuWsIPrGmgpiD3mt3Zsv/zOz8gsbrgb8pW/msmZPFmmX2t7nDL5nx1r/fWfUSA1jmiQAmiykGAQ==",
+      "type": "package",
+      "path": "mysqlconnector/2.1.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "logo.png",
+        "mysqlconnector.2.1.12.nupkg.sha512",
+        "mysqlconnector.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "MySqlConnector >= 2.1.12"
+    ]
+  },
+  "packageFolders": {
+    "/var/nuget": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/workspaces/Azure-MySQL-Metrics/AzureMySqlExample.csproj",
+      "projectName": "AzureMySqlExample",
+      "projectPath": "/workspaces/Azure-MySQL-Metrics/AzureMySqlExample.csproj",
+      "packagesPath": "/var/nuget",
+      "outputPath": "/workspaces/Azure-MySQL-Metrics/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/codespace/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "MySqlConnector": {
+            "target": "Package",
+            "version": "[2.1.12, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/opt/dotnet/6.0.301/sdk/6.0.301/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+/workspaces/Azure-MySQL-Metrics/bin/Debug/net6.0/AzureMySqlExample
+/workspaces/Azure-MySQL-Metrics/bin/Debug/net6.0/AzureMySqlExample.deps.json
+/workspaces/Azure-MySQL-Metrics/bin/Debug/net6.0/AzureMySqlExample.runtimeconfig.json
+/workspaces/Azure-MySQL-Metrics/bin/Debug/net6.0/AzureMySqlExample.dll
+/workspaces/Azure-MySQL-Metrics/bin/Debug/net6.0/AzureMySqlExample.pdb
+/workspaces/Azure-MySQL-Metrics/bin/Debug/net6.0/MySqlConnector.dll
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.csproj.AssemblyReference.cache
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.AssemblyInfoInputs.cache
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.AssemblyInfo.cs
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.csproj.CoreCompileInputs.cache
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.csproj.CopyComplete
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.dll
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/refint/AzureMySqlExample.dll
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.pdb
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/AzureMySqlExample.genruntimeconfig.cache
+/workspaces/Azure-MySQL-Metrics/obj/Debug/net6.0/ref/AzureMySqlExample.dll
