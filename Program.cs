@@ -62,9 +62,9 @@ namespace AzureMySqlExample
                     Console.WriteLine("Base table my_global_status is created");
                     
                     //step 2: Insert the variables selected from performance_schema.global_status/information_schema.global_status table to my_global_status.
-                    command.CommandText = @"INSERT INTO my_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
+                    command.CommandText = @"INSERT INTO my_global_status (metric_name, origin_metric_value) select * from information_schema.global_status;";
                     int rowCount = await command.ExecuteNonQueryAsync();
-                    Console.WriteLine("Copied metric value from performance_schema");
+                    Console.WriteLine("Copied metric value from information_schema");
                     Console.WriteLine(String.Format("Number of rows inserted={0}", rowCount));
                     
                     
@@ -84,7 +84,7 @@ namespace AzureMySqlExample
                         WHERE m.metric_name = g.VARIABLE_NAME;
                     */
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
-                        (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
+                        (select VARIABLE_NAME,VARIABLE_VALUE from information_schema.global_status) AS g,
                         (select metric_name,origin_metric_value from myMetricsCollector.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
                     Console.WriteLine("Get the changed values and output it to a file");
                     
@@ -107,7 +107,7 @@ namespace AzureMySqlExample
                     }
                     
                     //step 4: Flush history table to make it as the next baseline
-                    command.CommandText = @"UPDATE myMetricsCollector.my_global_status m, performance_schema.global_status g
+                    command.CommandText = @"UPDATE myMetricsCollector.my_global_status m, information_schema.global_status g
                     SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     await command.ExecuteNonQueryAsync();
                     Console.WriteLine("Updated history table");
