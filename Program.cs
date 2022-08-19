@@ -57,11 +57,12 @@ namespace AzureMySqlExample
                             origin_metric_value varchar(1024)
                         );
                     */
-                    command.CommandText = "CREATE DATABASE IF NOT EXISTS myMetricsCollector; Use myMetricsCollector; DROP TABLE IF EXISTS my_global_status; CREATE TABLE my_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
+                    command.CommandText = "CREATE DATABASE IF NOT EXISTS myMetricsCollector; Use myMetricsCollector; CREATE TABLE IF NOT EXISTS my_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
                     await command.ExecuteNonQueryAsync();
                     Console.WriteLine("Base table my_global_status is created");
                     
-                    //step 2: Insert the variables selected from performance_schema.global_status/information_schema.global_status table to my_global_status.
+                    //step 2: Insert the variables selected from information_schema.global_status table to my_global_status. 
+                    //This will be used as a baseline. If table already exists, skip to next step
                     command.CommandText = @"INSERT INTO my_global_status (metric_name, origin_metric_value) select * from information_schema.global_status;";
                     int rowCount = await command.ExecuteNonQueryAsync();
                     Console.WriteLine("Copied metric value from information_schema");
