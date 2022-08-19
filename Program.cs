@@ -83,7 +83,7 @@ namespace AzureMySqlExample
                     */
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
                         (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
-                        (select metric_name,origin_metric_value from globalstatus.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                        (select metric_name,origin_metric_value from myMetricsCollector.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
                     Console.WriteLine("Get the changed values and output it to a file");
                     
                     using (var reader = await command.ExecuteReaderAsync())
