@@ -1,0 +1,5 @@
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\MySQLMetricsCollector.csproj.AssemblyReference.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\MySQLMetricsCollector.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\MySQLMetricsCollector.AssemblyInfoInputs.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\MySQLMetricsCollector.AssemblyInfo.cs
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\MySQLMetricsCollector.csproj.CoreCompileInputs.cache

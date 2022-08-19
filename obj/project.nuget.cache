@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+j4NYc9zL71G7AQzSTEEBol69aBks+ag3yWu4f5q89KruEyqKdO0Mf3JA8z3XMmk+LaVuIlUzNxibZxlwCw3YQ==",
+  "dgSpecHash": "BKIE9wwNmm6eUmHTnkUrGl3F+ffPqNw1FAvJ5nqc28aGXm8cA6KfJWvFTWnDuYOLCJ//yYtK2YYVdDAToj/7UQ==",
   "success": true,
-  "projectFilePath": "/workspaces/Azure-MySQL-Metrics/AzureMySqlExample.csproj",
+  "projectFilePath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
   "expectedPackageFiles": [
-    "/var/nuget/mysqlconnector/2.1.12/mysqlconnector.2.1.12.nupkg.sha512"
+    "C:\\Users\\xixia\\.nuget\\packages\\mysqlconnector\\2.1.12\\mysqlconnector.2.1.12.nupkg.sha512"
   ],
   "logs": []
 }

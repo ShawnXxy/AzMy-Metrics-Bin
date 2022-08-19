@@ -1,0 +1,17 @@
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\bin\Debug\net6.0\MySQLMetricsCollector.exe
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\bin\Debug\net6.0\MySQLMetricsCollector.deps.json
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\bin\Debug\net6.0\MySQLMetricsCollector.runtimeconfig.json
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\bin\Debug\net6.0\MySQLMetricsCollector.dll
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\bin\Debug\net6.0\MySQLMetricsCollector.pdb
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.csproj.AssemblyReference.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.AssemblyInfoInputs.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.AssemblyInfo.cs
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.csproj.CoreCompileInputs.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.csproj.CopyComplete
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.dll
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\refint\MySQLMetricsCollector.dll
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.pdb
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\MySQLMetricsCollector.genruntimeconfig.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net6.0\ref\MySQLMetricsCollector.dll

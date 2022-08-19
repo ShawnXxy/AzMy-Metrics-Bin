@@ -42,24 +42,26 @@
     ]
   },
   "packageFolders": {
-    "/var/nuget": {}
+    "C:\\Users\\xixia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspaces/Azure-MySQL-Metrics/AzureMySqlExample.csproj",
-      "projectName": "AzureMySqlExample",
-      "projectPath": "/workspaces/Azure-MySQL-Metrics/AzureMySqlExample.csproj",
-      "packagesPath": "/var/nuget",
-      "outputPath": "/workspaces/Azure-MySQL-Metrics/obj/",
+      "projectUniqueName": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
+      "projectName": "AzMyStatusBin",
+      "projectPath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
+      "packagesPath": "C:\\Users\\xixia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/codespace/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\xixia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -89,7 +91,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -98,7 +101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/opt/dotnet/6.0.301/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
