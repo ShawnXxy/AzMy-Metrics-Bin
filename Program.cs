@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using MySqlConnector;
 using System.Timers;
+using System.Threading;
 
 namespace AzureMySqlExample
 {
@@ -30,9 +31,10 @@ namespace AzureMySqlExample
                 UserID = myUser,
                 Password = myPwd,
                 // SslMode = MySqlSslMode.Required,
-            };            
+            };
 
-            using (var conn = new MySqlConnection(builder.ConnectionString))
+            var conn = new MySqlConnection(builder.ConnectionString);
+            using (conn)
             {
                 Console.WriteLine("Opening connection");
                 await conn.OpenAsync();  //establish a connection to MySQL
@@ -120,6 +122,15 @@ namespace AzureMySqlExample
             timer.Start();
             //timer.Elapsed += new System.Timers.ElapsedEventHandler(test); 
             Console.ReadKey();
+
+            Console.WriteLine("\nPress the Enter key to exit the application...");
+            Console.WriteLine("The application started at {0}", DateTime.Now.ToString());
+            Console.ReadLine();
+            timer.Stop();
+            timer.Dispose();
+            conn.Close();
+
+            Console.WriteLine("Terminating the application...");
         }
             
 
