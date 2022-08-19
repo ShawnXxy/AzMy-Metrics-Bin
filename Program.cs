@@ -21,8 +21,8 @@ namespace AzureMySqlExample
             string myUser = Console.ReadLine();
             Console.WriteLine("MySQL password:");
             string myPwd = Console.ReadLine();
-            Console.WriteLine("SSL path if any:");
-            string mySsl = Console.ReadLine();
+            // Console.WriteLine("SSL path if any:");
+            // string mySsl = Console.ReadLine();
 
             var builder = new MySqlConnectionStringBuilder
             {
@@ -37,6 +37,7 @@ namespace AzureMySqlExample
                 Console.WriteLine("Opening connection");
                 await conn.OpenAsync();  //establish a connection to MySQL
                 Console.WriteLine($"MySQL version : {conn.ServerVersion}");
+                Console.WriteLine("============================================================");
 
                 using (var command = conn.CreateCommand())   // CreateCommand:sets the CommandText property
                 {
@@ -54,16 +55,16 @@ namespace AzureMySqlExample
                             origin_metric_value varchar(1024)
                         );
                     */
-                    command.CommandText = "CREATE DATABASE myMetricsCollector; Use myMetricsCollector;CREATE TABLE my_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
+                    command.CommandText = "CREATE DATABASE IF NOT EXISTS myMetricsCollector; Use myMetricsCollector; DROP TABLE IF EXISTS my_global_status; CREATE TABLE my_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
                     await command.ExecuteNonQueryAsync();
-                    Console.WriteLine("1, To create a table used to store the data");
+                    Console.WriteLine("Base table my_global_status is created");
                     
                     //step 2: Insert the variables selected from performance_schema.global_status/information_schema.global_status table to my_global_status.
                     command.CommandText = @"INSERT INTO my_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
                     int rowCount = await command.ExecuteNonQueryAsync();
+                    Console.WriteLine("Copied metric value from performance_schema");
                     Console.WriteLine(String.Format("Number of rows inserted={0}", rowCount));
-                    Console.WriteLine("2, Copy metric value from performance_schema");
-
+                    
                     
                     // Step 3, To get the difference between current metric value and previous checked value
                     /*
@@ -83,13 +84,13 @@ namespace AzureMySqlExample
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
                         (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
                         (select metric_name,origin_metric_value from globalstatus.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
-                    Console.WriteLine("3, Get the changed values and output it to a file");
+                    Console.WriteLine("Get the changed values and output it to a file");
                     
                     using (var reader = await command.ExecuteReaderAsync())
                     {
 
                         // if second parameter is true：append
-                        StreamWriter writer = new StreamWriter(@"/home/azureuser/AzureMySqlExample/mysql_global_status.log",true);  
+                        StreamWriter writer = new StreamWriter(@"/var/lib/custom/mysql-metrics-collector/mysql_global_status.log",true);  
                         while (await reader.ReadAsync())
                         {
                             DateTime dt = DateTime.Now;
@@ -121,50 +122,6 @@ namespace AzureMySqlExample
             Console.ReadKey();
         }
             
-        // Function
-        // static async void test(object? sender, EventArgs e)
-        // {
-        //     var builder = new MySqlConnectionStringBuilder
-        //     {
-        //         Server = "mysql-flex-1.mysql.database.azure.com",
-        //         Database = "globalstatus",
-        //         UserID = "myadmin",
-        //         Password = "",
-        //         SslMode = MySqlSslMode.Required,
-        //     };
-        //     using (var conn = new MySqlConnection(builder.ConnectionString))
-        //     {
-
-        //         await conn.OpenAsync(); 
-        //         using (var command = conn.CreateCommand()) 
-        //         {
-        //             command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
-        //                 (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
-        //                 (select metric_name,origin_metric_value from globalstatus.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
-
-        //             using (var reader = await command.ExecuteReaderAsync())
-        //             {
-        //                 StreamWriter writer2 = new StreamWriter(@"/home/azureuser/AzureMySqlExample/mysql_global_status.log",true); 
-        //                 while (await reader.ReadAsync())
-        //                 {
-        //                     DateTime dt = DateTime.Now;
-        //                     writer2.Write(dt.GetDateTimeFormats('s')[0].ToString());
-        //                     writer2.WriteLine(string.Format(" {0} {1}",reader.GetString(0),reader.GetDouble(1)));//写入一行
-
-        //                 }
-        //                 writer2.Close(); 
-        //             }
-        //             command.CommandText = @"UPDATE globalstatus.my_global_status m, performance_schema.global_status g
-        //             SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
-        //             await command.ExecuteNonQueryAsync();
-                    
-        //             Console.WriteLine("Updated history table again");
-
-        //         }
-
-        //     } 
-
-        // }
 
     }
 
