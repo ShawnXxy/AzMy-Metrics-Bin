@@ -107,7 +107,7 @@ namespace AzureMySqlExample
                     }
                     
                     //step 4: Flush history table to make it as the next baseline
-                    command.CommandText = @"UPDATE globalstatus.my_global_status m, performance_schema.global_status g
+                    command.CommandText = @"UPDATE myMetricsCollector.my_global_status m, performance_schema.global_status g
                     SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     await command.ExecuteNonQueryAsync();
                     Console.WriteLine("Updated history table");
