@@ -16,11 +16,11 @@ namespace AzMyStatusBin
         {
             _connection = connection;
 
-            // Generate base table and baseline data from information_schema.global_status
-            Console.WriteLine("Opening connection");
-            _connection.Open();  //establish a connection to MySQL
-            Console.WriteLine($"MySQL version : {_connection.ServerVersion}");
-            Console.WriteLine("============================================================");
+            //// Generate base table and baseline data from information_schema.global_status
+            //Console.WriteLine("Opening connection");
+            //_connection.Open();  //establish a connection to MySQL
+            //Console.WriteLine($"MySQL version : {_connection.ServerVersion}");
+            //Console.WriteLine("============================================================");
 
             using (var command = _connection.CreateCommand())   // CreateCommand:sets the CommandText property
             {
