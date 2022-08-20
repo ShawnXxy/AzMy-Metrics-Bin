@@ -18,7 +18,7 @@ namespace AzureMySQLMetricsCollector
         static LAWorkspace logAnalyticsWorkspace = null;
         //static string[] strTables;
         static StatusLog statusLog = null;
-        static void  Main(string[] args)
+        static void Main(string[] args)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace AzureMySQLMetricsCollector
                                  (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
                                  (select metric_name,origin_metric_value from globalstatus.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
 
-                    using (var reader =  command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         StreamWriter writer2 = new StreamWriter(@"/home/azureuser/AzureMySqlExample/mysql_global_status.log", true);
                         while (reader.Read())
@@ -124,10 +124,10 @@ namespace AzureMySQLMetricsCollector
                 }
 
 
-
             }
-    }
 
+        }
+    }
 }
 
 
