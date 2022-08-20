@@ -60,7 +60,7 @@ namespace AzureMySQLMetricsCollector
                     SharedKey = strPrimaryKey
                 };
 
-                statusLog = new StatusLog(@"/var/lib/custom/azMy-metrics-collector", @"azMy-global-status.log");
+                statusLog = new StatusLog(@"/var/lib/custom/azMy-metrics-collector", @"azMy_global_status.log");
 
                 var aTimer = new System.Timers.Timer(60000); //1 Minute
                 aTimer.Elapsed += OnTimedEvent;
