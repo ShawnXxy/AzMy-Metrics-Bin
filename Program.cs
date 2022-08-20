@@ -66,7 +66,7 @@ namespace AzureMySQLMetricsCollector
                 aTimer.Enabled = true;
                 aTimer.Interval = 30000; //  ms
                 aTimer.Start();
-                timer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimedEvent); 
+                aTimer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimedEvent); 
                 Console.ReadKey();
 
                 Console.WriteLine("\nPress the Enter key to exit the application...");
