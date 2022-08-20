@@ -95,11 +95,11 @@ namespace AzureMySQLMetricsCollector
                 {
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
                                  (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
-                                 (select metric_name,origin_metric_value from globalstatus.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                                 (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
 
                     using (var reader = command.ExecuteReader())
                     {
-                        StreamWriter writer2 = new StreamWriter(@"/home/azureuser/AzureMySqlExample/mysql_global_status.log", true);
+                        StreamWriter writer2 = new StreamWriter(@"/var/lib/custom/azMy-metrics-collector/azMy_global_status.log", true);
                         while (reader.Read())
                         {
                             DateTime dt = DateTime.Now;
@@ -109,11 +109,11 @@ namespace AzureMySQLMetricsCollector
                         }
                         writer2.Close();
                     }
-                    command.CommandText = @"UPDATE globalstatus.my_global_status m, performance_schema.global_status g
+                    command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
                              SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
 
-                    Console.WriteLine("Updated history table again");
+                    Console.WriteLine("Updated global status data change table again");
 
                     string myGlobalStatus = statusLog.GetJsonPayload();
                     if (myGlobalStatus != null)

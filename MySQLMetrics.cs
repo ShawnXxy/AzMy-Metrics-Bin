@@ -16,12 +16,6 @@ namespace AzMyStatusBin
         {
             _connection = connection;
 
-            //// Generate base table and baseline data from performance_schema.global_status
-            //Console.WriteLine("Opening connection");
-            //_connection.Open();  //establish a connection to MySQL
-            //Console.WriteLine($"MySQL version : {_connection.ServerVersion}");
-            //Console.WriteLine("============================================================");
-
             using (var command = _connection.CreateCommand())   // CreateCommand:sets the CommandText property
             {
 
@@ -38,13 +32,13 @@ namespace AzMyStatusBin
                         origin_metric_value varchar(1024)
                     );
                 */
-                command.CommandText = "CREATE DATABASE IF NOT EXISTS azMyMetricsCollector; Use azMyMetricsCollector; CREATE TABLE IF NOT EXISTS azMy_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
+                command.CommandText = "CREATE DATABASE IF NOT EXISTS azmy_metrics_collector; Use azmy_metrics_collector; CREATE TABLE IF NOT EXISTS azmy_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
                 command.ExecuteNonQuery();
-                Console.WriteLine("Base table azMyMetricsCollector.azMy_global_status is created");
+                Console.WriteLine("Base table azmy_metrics_collector.azmy_global_status is created");
 
                 //step 2: Insert the variables selected from performance_schema.global_status table to my_global_status. 
                 //This will be used as a baseline. If table already exists, skip to next step
-                command.CommandText = @"INSERT INTO azMy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
+                command.CommandText = @"INSERT INTO azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
                 //int rowCount = command.ExecuteNonQueryAsync();
                 Console.WriteLine("Copied metric value from performance_schema");
                 //Console.WriteLine(String.Format("Number of rows inserted={0}", rowCount));
@@ -66,7 +60,7 @@ namespace AzMyStatusBin
                 */
                 command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
                         (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
-                        (select metric_name,origin_metric_value from myMetricsCollector.my_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                        (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
                 Console.WriteLine("Get the changed values and output it to a file");
 
                 using (var reader = command.ExecuteReader())
@@ -93,7 +87,7 @@ namespace AzMyStatusBin
                 }
 
                 //step 4: Flush history table to make it as the next baseline
-                command.CommandText = @"UPDATE myMetricsCollector.my_global_status m, performance_schema.global_status g
+                command.CommandText = @"UPDATE azmy_metrics_collector.my_global_status m, performance_schema.global_status g
                     SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Updated history table");
