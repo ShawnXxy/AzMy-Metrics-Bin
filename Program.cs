@@ -93,7 +93,13 @@ namespace AzureMySqlExample
                     {
 
                         // if second parameter is true：append
-                        StreamWriter writer = new StreamWriter(@"/var/lib/custom/mysql-metrics-collector/mysql_global_status.log",true);  
+                        string directory_path = "/var/lib/custom/mysql-metrics-collector";
+                        string file_name = "mysql_global_status.log";
+                        if (!Directory.Exists(directory_path))
+                        {
+                            Directory.CreateDirectory(directory_path);
+                        }
+                        StreamWriter writer = new StreamWriter(Path.Combine(directory_path,file_name),true);  
                         while (await reader.ReadAsync())
                         {
                             DateTime dt = DateTime.Now;
