@@ -96,6 +96,7 @@ namespace AzureMySQLMetricsCollector
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
                                  (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
                                  (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                    command.ExecuteNonQuery();
 
                     using (var reader = command.ExecuteReader())
                     {

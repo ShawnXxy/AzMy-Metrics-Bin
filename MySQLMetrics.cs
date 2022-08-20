@@ -38,7 +38,8 @@ namespace AzMyStatusBin
 
                 //step 2: Insert the variables selected from performance_schema.global_status table to my_global_status. 
                 //This will be used as a baseline. If table already exists, skip to next step
-                command.CommandText = @"INSERT INTO azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
+                command.CommandText = @"INSERT INTO azmy_metrics_collector.azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
+                command.ExecuteNonQuery();
                 //int rowCount = command.ExecuteNonQueryAsync();
                 Console.WriteLine("Copied metric value from performance_schema");
                 //Console.WriteLine(String.Format("Number of rows inserted={0}", rowCount));
@@ -61,6 +62,7 @@ namespace AzMyStatusBin
                 command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
                         (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
                         (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                command.ExecuteNonQuery();
                 Console.WriteLine("Get the changed values and output it to a file");
 
                 using (var reader = command.ExecuteReader())
