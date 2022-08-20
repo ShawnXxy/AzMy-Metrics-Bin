@@ -97,8 +97,7 @@ namespace AzureMySqlExample
                         while (await reader.ReadAsync())
                         {
                             DateTime dt = DateTime.Now;
-                            // Console.Write(dt.GetDateTimeFormats('s')[0].ToString());
-                            // Console.WriteLine(string.Format(" {0} {1}",reader.GetString(0),reader.GetDouble(1)));
+                            
                             writer.Write(dt.GetDateTimeFormats('s')[0].ToString());
                             writer.WriteLine(string.Format(" {0} {1}",reader.GetString(0),reader.GetDouble(1)));
 
