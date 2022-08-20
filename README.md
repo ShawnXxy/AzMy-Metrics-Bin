@@ -1,9 +1,9 @@
-# Ingest Mysql Metrics from information_schema.global_status into the Azure Monitor Log Analytics Workspace
+# Ingest Mysql Metrics from performance_schema.global_status into the Azure Monitor Log Analytics Workspace
 
 MySQL performance_schema.global_status have rich internal functioning metrics, and the stored metrics are the snapshot of a particular point of time when you select the metric table. When troubleshooting the problem, we need to review and accumulate the historical metrics data with powerful query functions like [Azure Monitor Kusto Queries](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/query-language) to help understand the overall status. In this tool, it will introduce how to post the metrics to Azure Monitor Log Analytics Workspace and leverage the powerful Kusto query language to monitor the MySQL statistics metrics.
 
 ## Ingest the Metrics to external monitoring tool – Azure Monitor:
-1.  We need to run the ingestion code side by side on the same VM. The ingestion sample code will query the MySQL information_schema.global_status metrics then post the data to the Logical Workspace in a regular 30-sec interval.
+1.  We need to run the ingestion code side by side on the same VM. The ingestion sample code will query the MySQL performance_schema.global_status metrics then post the data to the Logical Workspace in a regular 30-sec interval.
 2. Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. The Ingestion sample code performs POST Azure Monitor custom log through HTTP REST API: [Link](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api)
 3. The ingestion sample code is developed with .NET Core 3.1, and you could check out from the [GitHub repo](https://github.com/ShawnXxy/AzMy-Metrics-Bin.git)
 
@@ -35,10 +35,10 @@ MySQL performance_schema.global_status have rich internal functioning metrics, a
 
     Here are some details about the sample:
     - It is a console application which will ask for the input of the connection string for MySQL, (Log Workspace) custom ID and Shared key.
-    - The sample currently register a 30-sec timer to periodically access the MySQL information_schema.global_status tables through MySQL protocol and post data into the Log Analytics Workspace
+    - The sample currently register a 30-sec timer to periodically access the MySQL performance_schema.global_status tables through MySQL protocol and post data into the Log Analytics Workspace
     - The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
 
-4. Use Kusto query in Log Analytics Workspace to operate the MySQL information_schema.global_status metrics data.
+4. Use Kusto query in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data.
 
 >Disclaimer: This sample code is available AS IS with no warranties and support from Microsoft. Please raise an issue in Github if you encounter any issues and I will try our best to address it.
 
