@@ -27,7 +27,7 @@ namespace AzureMySQLMetricsCollector
                 Console.WriteLine("MySQL hostname (Full FQDN):");
                 string myHost = Console.ReadLine();
                 Console.WriteLine("MySQL username:");
-                string myUser = Console.ReadLine();
+                string myUser = Console.ReadLine(); 
                 Console.WriteLine("MySQL password:");
                 string myPwd = Console.ReadLine();
                 // Console.WriteLine("SSL path if any:");
