@@ -32,13 +32,13 @@ namespace AzMyStatusBin
                         origin_metric_value varchar(1024)
                     );
                 */
-                command.CommandText = "CREATE DATABASE IF NOT EXISTS azmy_metrics_collector; Use azmy_metrics_collector; CREATE TABLE IF NOT EXISTS azmy_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
+                command.CommandText = "CREATE TEMPORARY TABLE IF NOT EXISTS azmy_metrics_collector.azmy_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Base table azmy_metrics_collector.azmy_global_status is created");
 
                 //step 2: Insert the variables selected from performance_schema.global_status table to my_global_status. 
                 //This will be used as a baseline. If table already exists, skip to next step
-                command.CommandText = @"INSERT INTO azmy_metrics_collector.azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
+                command.CommandText = @"REPLACE INTO azmy_metrics_collector.azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
                 command.ExecuteNonQuery();
                 //int rowCount = command.ExecuteNonQueryAsync();
                 Console.WriteLine("Copied metric value from performance_schema");
