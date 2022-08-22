@@ -40,6 +40,22 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.ApplicationInsights.Web": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
+            "Microsoft.ApplicationInsights.WindowsServer": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
+            "Microsoft.ApplicationInsights.WorkerService": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
+            "Microsoft.AspNet.TelemetryCorrelation": {
+              "target": "Package",
+              "version": "[1.0.8, )"
+            },
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.1.12, )"

@@ -1,2 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.applicationinsights.windowsserver\2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.applicationinsights.windowsserver\2.21.0\build\Microsoft.ApplicationInsights.WindowsServer.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.applicationinsights.web\2.21.0\build\Microsoft.ApplicationInsights.Web.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.applicationinsights.web\2.21.0\build\Microsoft.ApplicationInsights.Web.targets')" />
+  </ImportGroup>
+</Project>
