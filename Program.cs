@@ -113,7 +113,6 @@ namespace AzureMySQLMetricsCollector
                     command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
                              SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
-
                     Console.WriteLine("Updated global status data change table again");
 
                     string myGlobalStatus = statusLog.GetJsonPayload();
