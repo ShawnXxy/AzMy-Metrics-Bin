@@ -25,6 +25,8 @@ MySQL performance_schema.global_status have rich internal functioning metrics, a
     3)	To the right of Workspace ID, select the copy icon, and then paste the ID as the value of the Customer ID input for the sample application input.
     4)	To the right of Primary Key, select the copy icon, and then paste the ID as the value of the Shared Key input for the sample application input.
     ```
+    ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
+
 3. Checkout the sample code and run:
     ```bash
     git clone https://github.com/ShawnXxy/AzMy-Metrics-Bin.git
