@@ -90,7 +90,7 @@ namespace AzureMySQLMetricsCollector
             using (conn)
             {
 
-                conn.Open();
+//                 conn.Open();
                 using (var command = conn.CreateCommand())
                 {
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
