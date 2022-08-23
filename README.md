@@ -7,6 +7,7 @@ MySQL performance_schema.global_status have rich internal functioning metrics, a
 2. Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. The Ingestion sample code performs POST Azure Monitor custom log through HTTP REST API: [Link](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api)
 3. The ingestion sample code is developed with .NET Core 6.0, and you could check out from the [GitHub repo](https://github.com/ShawnXxy/AzMy-Metrics-Bin.git)
 
+
 ## Detail usage instructions about the sample ingesting code:
 1. Install .NET Core on the Linux VM where ProxySQL is located. Refer to https://docs.microsoft.com/dotnet/core/install/linux-package-manager-ubuntu-1804
     ```bash
