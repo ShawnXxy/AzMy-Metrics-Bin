@@ -63,16 +63,17 @@ namespace AzureMySQLMetricsCollector
                 statusLog = new StatusLog(@"/var/lib/custom/azMy-metrics-collector", @"azMy_global_status.log");
 
                 var aTimer = new System.Timers.Timer(30000);
-                aTimer.Elapsed += OnTimedEvent;
+//                 aTimer.Elapsed += OnTimedEvent;
+                aTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) => OnTimedEvent(s, e, myHost,myUser,myPwd));
                 aTimer.AutoReset = true;
                 aTimer.Enabled = true;
 
                 Console.WriteLine("\nPress the Enter key to exit the application...");
                 Console.WriteLine("The application started at {0}", DateTime.Now.ToString());
                 Console.ReadLine();
-                aTimer.Stop();
-                aTimer.Dispose();
-                conn?.Close();
+//                 aTimer.Stop();
+//                 aTimer.Dispose();
+//                 conn?.Close();
 
                 Console.WriteLine("Terminating the application...");
 
@@ -83,13 +84,22 @@ namespace AzureMySQLMetricsCollector
             }
         }
 
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e,string myHost,string myUser, string myPwd)
         {
             Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
+            var builder = new MySqlConnectionStringBuilder
+            {
+                Server = myHost,
+                UserID = myUser,
+                Password = myPwd,
+            };
+        
+            conn = new MySqlConnection(builder.ConnectionString);
 
             using (conn)
             {
 
+                conn.Open();
                 using (var command = conn.CreateCommand())
                 {
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
