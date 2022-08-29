@@ -76,6 +76,7 @@ namespace AzMyStatusBin
                         Directory.CreateDirectory(directory_path);
                     }
                     StreamWriter writer = new StreamWriter(Path.Combine(directory_path, file_name), true);
+                    writer.WriteLineAsync("Time Metrics_name Metrics_value");
                     while (reader.Read())
                     {
                         DateTime dt = DateTime.Now;
