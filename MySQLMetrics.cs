@@ -32,9 +32,9 @@ namespace AzMyStatusBin
                         origin_metric_value varchar(1024)
                     );
                 */
-                command.CommandText = "CREATE DATABASE if not exists azmy_metrics_collector";
-                command.ExecuteNonQuery();
-                command.CommandText = "CREATE TEMPORARY TABLE IF NOT EXISTS azmy_metrics_collector.azmy_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024));";
+                //command.CommandText = "CREATE DATABASE if not exists azmy_metrics_collector";
+                //command.ExecuteNonQuery();
+                command.CommandText = "CREATE TABLE IF NOT EXISTS azmy_metrics_collector.azmy_global_status (metric_name VARCHAR(64) NOT NULL UNIQUE, origin_metric_value VARCHAR(1024)) ENGINE = MEMORY;";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Base table azmy_metrics_collector.azmy_global_status is created");
 
