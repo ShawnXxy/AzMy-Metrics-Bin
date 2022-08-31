@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A9my3Jc7TNabjWDcfGbe1cd7WY9wrUtwewOHZYmFrQv6ZyDelTcWmlxdGWplTzH1m1PyE8LmKUWhpemZApQilA==",
+  "dgSpecHash": "CHm2n+zd09PIX8IKSxp62n68qJfoi7vKBoeijFKFiIJ6TyqlnGb58my9ftv9jTziyK0rZaJu/kOaFmxFn7Df3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
   "expectedPackageFiles": [
@@ -29,7 +29,7 @@
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\mysqlconnector\\2.1.12\\mysqlconnector.2.1.12.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\mysqlconnector\\2.1.13\\mysqlconnector.2.1.13.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",

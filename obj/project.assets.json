@@ -435,13 +435,17 @@
           }
         }
       },
-      "MySqlConnector/2.1.12": {
+      "MySqlConnector/2.1.13": {
         "type": "package",
         "compile": {
-          "lib/net6.0/MySqlConnector.dll": {}
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/MySqlConnector.dll": {}
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Collections/4.0.11": {
@@ -1303,24 +1307,32 @@
         "version.txt"
       ]
     },
-    "MySqlConnector/2.1.12": {
-      "sha512": "XIYN95wlj6oIuWsIPrGmgpiD3mt3Zsv/zOz8gsbrgb8pW/msmZPFmmX2t7nDL5nx1r/fWfUSA1jmiQAmiykGAQ==",
+    "MySqlConnector/2.1.13": {
+      "sha512": "Y3qts7mnuZ4EGEQOI4xJ1n+9ZJOmrcwD2CdqyAXuQONBkrc2ENDywE6ZBysFaRojXrnWzLXpc595+GYlN/PI9Q==",
       "type": "package",
-      "path": "mysqlconnector/2.1.12",
+      "path": "mysqlconnector/2.1.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
         "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
         "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
         "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
         "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
         "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
         "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
         "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
         "logo.png",
-        "mysqlconnector.2.1.12.nupkg.sha512",
+        "mysqlconnector.2.1.13.nupkg.sha512",
         "mysqlconnector.nuspec"
       ]
     },
@@ -2665,7 +2677,7 @@
       "Microsoft.ApplicationInsights.WindowsServer >= 2.21.0",
       "Microsoft.ApplicationInsights.WorkerService >= 2.21.0",
       "Microsoft.AspNet.TelemetryCorrelation >= 1.0.8",
-      "MySqlConnector >= 2.1.12"
+      "MySqlConnector >= 2.1.13"
     ]
   },
   "packageFolders": {
@@ -2725,7 +2737,7 @@
           },
           "MySqlConnector": {
             "target": "Package",
-            "version": "[2.1.12, )"
+            "version": "[2.1.13, )"
           }
         },
         "imports": [
