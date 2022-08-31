@@ -17,7 +17,6 @@ namespace AzureMySQLMetricsCollector
         static MySqlConnection conn = null;
         static MySQLMetrics myMetrics = null;
         static LAWorkspace logAnalyticsWorkspace = null;
-        //static string[] strTables;
         static StatusLog statusLog = null;
         static void Main(string[] args)
         {
@@ -28,11 +27,11 @@ namespace AzureMySQLMetricsCollector
                 // Input MySQL connections tring
                 Console.WriteLine("Please input the the MySQL connection information in the following");
                 Console.WriteLine("MySQL hostname (Full FQDN):");
-                string myHost = Console.ReadLine();
+                string myHost = Console.ReadLine()!;
                 Console.WriteLine("MySQL username:");
-                string myUser = Console.ReadLine(); 
+                string myUser = Console.ReadLine()!; 
                 Console.WriteLine("MySQL password:");
-                string myPwd = Console.ReadLine();
+                string myPwd = Console.ReadLine()!;
                 // Console.WriteLine("SSL path if any:");
                 // string mySsl = Console.ReadLine();
 
@@ -53,9 +52,9 @@ namespace AzureMySQLMetricsCollector
                 //input the workspace information
                 Console.WriteLine("Please go to Logistic-Analytics-Workspace advanced setting, to copy Workspace-ID and Primary-Key");
                 Console.WriteLine("Workspace ID:");
-                string strWorkspaceID = Console.ReadLine();
+                string strWorkspaceID = Console.ReadLine()!;
                 Console.WriteLine("Primary Key:");
-                string strPrimaryKey = Console.ReadLine();
+                string strPrimaryKey = Console.ReadLine()!;
 
                 logAnalyticsWorkspace ??= new LAWorkspace
                 {

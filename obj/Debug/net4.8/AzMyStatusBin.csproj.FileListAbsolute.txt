@@ -1,0 +1,7 @@
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.csproj.AssemblyReference.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.csproj.SuggestedBindingRedirects.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.exe.config
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.AssemblyInfoInputs.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.AssemblyInfo.cs
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\net4.8\AzMyStatusBin.csproj.CoreCompileInputs.cache

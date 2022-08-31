@@ -56,7 +56,7 @@ namespace AzMyStatusBin
                 jsonString.Append("[");
 
                 string s;
-                while ((s = sr.ReadLine()) != null)
+                while ((s = sr.ReadLine()!) != null)
                 {
                     _lastReadPos = fileStream.Position;
                     
