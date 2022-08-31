@@ -22,6 +22,7 @@ namespace AzureMySQLMetricsCollector
         static void Main(string[] args)
         {
             TelemetryConfiguration config = TelemetryConfiguration.Active; // Reads ApplicationInsights.config file if present: https://docs.microsoft.com/en-us/azure/azure-monitor/app/console
+            
             try
             {
                 // Input MySQL connections tring

@@ -35,7 +35,7 @@
           }
         },
         "build": {
-          "build/_._": {}
+          "build/Microsoft.ApplicationInsights.DependencyCollector.targets": {}
         }
       },
       "Microsoft.ApplicationInsights.EventCounterCollector/2.21.0": {
@@ -127,7 +127,7 @@
           }
         },
         "build": {
-          "build/_._": {}
+          "build/Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.targets": {}
         }
       },
       "Microsoft.ApplicationInsights.WorkerService/2.21.0": {
@@ -2673,8 +2673,10 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.ApplicationInsights.DependencyCollector >= 2.21.0",
       "Microsoft.ApplicationInsights.Web >= 2.21.0",
       "Microsoft.ApplicationInsights.WindowsServer >= 2.21.0",
+      "Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel >= 2.21.0",
       "Microsoft.ApplicationInsights.WorkerService >= 2.21.0",
       "Microsoft.AspNet.TelemetryCorrelation >= 1.0.8",
       "MySqlConnector >= 2.1.13"
@@ -2719,11 +2721,19 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.ApplicationInsights.DependencyCollector": {
+            "target": "Package",
+            "version": "[2.21.0, )"
+          },
           "Microsoft.ApplicationInsights.Web": {
             "target": "Package",
             "version": "[2.21.0, )"
           },
           "Microsoft.ApplicationInsights.WindowsServer": {
+            "target": "Package",
+            "version": "[2.21.0, )"
+          },
+          "Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel": {
             "target": "Package",
             "version": "[2.21.0, )"
           },

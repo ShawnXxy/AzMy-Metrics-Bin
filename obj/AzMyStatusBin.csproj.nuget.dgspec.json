@@ -40,11 +40,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.ApplicationInsights.DependencyCollector": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
             "Microsoft.ApplicationInsights.Web": {
               "target": "Package",
               "version": "[2.21.0, )"
             },
             "Microsoft.ApplicationInsights.WindowsServer": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            },
+            "Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel": {
               "target": "Package",
               "version": "[2.21.0, )"
             },
