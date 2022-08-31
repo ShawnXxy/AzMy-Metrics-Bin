@@ -8,6 +8,7 @@ using MySqlConnector;
 using System.Timers;
 using System.Threading;
 using AzMyStatusBin;
+using Microsoft.ApplicationInsights.Extensibility;
 
 namespace AzureMySQLMetricsCollector
 {
@@ -20,6 +21,7 @@ namespace AzureMySQLMetricsCollector
         static StatusLog statusLog = null;
         static void Main(string[] args)
         {
+            TelemetryConfiguration config = TelemetryConfiguration.Active; // Reads ApplicationInsights.config file if present: https://docs.microsoft.com/en-us/azure/azure-monitor/app/console
             try
             {
                 // Input MySQL connections tring
