@@ -124,7 +124,7 @@ namespace AzureMySQLMetricsCollector
                     string myGlobalStatus = statusLog.GetJsonPayload();
                     if (myGlobalStatus != null)
                     {
-                        logAnalyticsWorkspace.InjestLog(myGlobalStatus, "StatusLog");
+                        logAnalyticsWorkspace.InjestLog(myGlobalStatus, "AzMyStatus");
                     }
 
                 }

@@ -64,7 +64,6 @@ namespace AzMyStatusBin
                         string [] words = s.Split(' ');
                         
                         jsonString.Append("{");
-//                         jsonString.Append(string.Format("\"{0}\":\"{1}\"", " ", s));
                         jsonString.Append(string.Format("\"{0}\":\"{1}\"", "Time", words[0]));
                         jsonString.Append(",");
                         jsonString.Append(string.Format("\"{0}\":\"{1}\"", "MetricName", words[1]));
