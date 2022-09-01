@@ -61,8 +61,16 @@ namespace AzMyStatusBin
                     _lastReadPos = fileStream.Position;
                     if (s.Contains(" "))
                     {
+                        string [] words = s.Split(' ');
+                        
                         jsonString.Append("{");
-                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", " ", s));
+//                         jsonString.Append(string.Format("\"{0}\":\"{1}\"", " ", s));
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "Time", words[0]));
+                        jsonString.Append(",");
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "MetricName", words[1]));
+                        jsonString.Append(",");
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "MetricValue", words[2]));
+                        
                         jsonString.Append("},");
                     }
 
