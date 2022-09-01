@@ -59,7 +59,13 @@ namespace AzMyStatusBin
                 while ((s = sr.ReadLine()!) != null)
                 {
                     _lastReadPos = fileStream.Position;
-                    
+                    if (s.Contains(" "))
+                    {
+                        jsonString.Append("{");
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", " ", s));
+                        jsonString.Append("},");
+                    }
+
                 }
                 jsonString.Remove(jsonString.Length - 1, 1);
                 jsonString.Append("]");
