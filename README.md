@@ -1,10 +1,10 @@
-# Ingest Mysql Metrics from performance_schema.global_status into the Azure Monitor Log Analytics Workspace
+# Ingest Mysql Metrics from information_schema.global_status into the Azure Monitor Log Analytics Workspace
 
-MySQL performance_schema.global_status have rich internal functioning metrics, and the stored metrics are the snapshot of a particular point of time when you select the metric table. When troubleshooting the problem, we need to review and accumulate the historical metrics data with powerful query functions like [Azure Monitor Kusto Queries](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/query-language) to help understand the overall status. In this tool, it will introduce how to post the metrics to Azure Monitor Log Analytics Workspace and leverage the powerful Kusto query language to monitor the MySQL statistics metrics.
+MySQL information_schema.global_status have rich internal functioning metrics, and the stored metrics are the snapshot of a particular point of time when you select the metric table. When troubleshooting the problem, we need to review and accumulate the historical metrics data with powerful query functions like [Azure Monitor Kusto Queries](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/query-language) to help understand the overall status. In this tool, it will introduce how to post the metrics to Azure Monitor Log Analytics Workspace and leverage the powerful Kusto query language to monitor the MySQL statistics metrics.
 
 Here are some details about the sample:
 1. It is a console application which will ask for the input of the connection string for MySQL, (Log Workspace) custom ID and Shared key. 
-2. We need to run the ingestion code side by side in a VM that is allowed to connected to the target MySQL. The ingestion sample code will query the MySQL performance_schema.global_status metrics and then post the data to the Logical Workspace in a regular 30-sec interval.
+2. We need to run the ingestion code side by side in a VM that is allowed to connected to the target MySQL. The ingestion sample code will query the MySQL information_schema.global_status metrics and then post the data to the Logical Workspace in a regular 30-sec interval.
 
 Below is a sample turnout that you can monitor workload like amount of DML, DDL, buffer pool usage, data read/write, etc. that could be useful when inestigating performance or usage.
 Further, you can leverage Azure Monitor to subscribe alert based on preference: https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/tutorial-log-alert
@@ -28,6 +28,7 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     sudo apt-get update
     sudo apt-get install dotnet-sdk-6.0
     ```
+- Making sure parameter ***show_compatibility_56*** is enabled. It should be OFF by default, you can check it and modify it in Azure Portal
 
 ## Detail usage instructions about the sample ingesting code:
 1. Checkout the sample code and run:
@@ -51,10 +52,14 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     ```  
   ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
    
-3. Use [Kusto query](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/) in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
+3. Use [Kusto query](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/) in Log Analytics Workspace to operate the MySQL information_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
     ![image](https://user-images.githubusercontent.com/17153057/188055029-ad604272-3709-4ccc-b9c6-70a02cdf8db3.png)
 
 ## Sample Kusto Query 
+[This](/Sample%20Kusto%20Query.md) summarized some sample Kusto queries to monitor the MySQL statistics metrics.
+
+---
+
 
 >Disclaimer: This sample code is available AS IS with no warranties and support from Microsoft. Please raise an issue in Github if you encounter any issues and I will try our best to address it.
 

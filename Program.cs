@@ -100,7 +100,7 @@ namespace AzureMySQLMetricsCollector
                 using (var command = conn.CreateCommand())
                 {
                     command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
-                                 (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
+                                 (select VARIABLE_NAME,VARIABLE_VALUE from information_schema.global_status) AS g,
                                  (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
 
@@ -116,7 +116,7 @@ namespace AzureMySQLMetricsCollector
                         }
                         writer2.Close();
                     }
-                    command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
+                    command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, information_schema.global_status g
                              SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
                     Console.WriteLine("Updated global status data change table again");
