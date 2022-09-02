@@ -11,16 +11,17 @@ Further, you can leverage Azure Monitor to subscribe alert: https://docs.microso
 ![image](https://user-images.githubusercontent.com/17153057/188049380-867e90b2-5e2d-4ae4-a2b9-ad3c247f71e7.png)
 
 ## Prerequisite
-    - Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. The Ingestion sample code performs POST Azure Monitor custom log through HTTP REST API: [Link](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api). Get the Custom ID and Shared Key of the Log Analytics Workspace that you will be asked when running the app
+- Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. The Ingestion sample code performs POST Azure Monitor custom log through HTTP REST API: [Link](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api). Get the Custom ID and Shared Key of the Log Analytics Workspace that you will be asked when running the app
     ```text
     1)	In the Azure portal, locate your Log Analytics workspace.
     2)	Select Advanced Settings and then Connected Sources.
     3)	To the right of Workspace ID, select the copy icon, and then paste the ID as the value of the Customer ID input for the sample application input.
     4)	To the right of Primary Key, select the copy icon, and then paste the ID as the value of the Shared Key input for the sample application input.
     ```
-    ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
+  
+  ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
     
-    - The ingestion sample code is developed with .NET Core 6.0. Install .NET Core on a Linux VM where is allowed to connected to the target MySQL. Refer to https://docs.microsoft.com/dotnet/core/install/linux-package-manager-ubuntu-1804
+- The ingestion sample code is developed with .NET Core 6.0. Install .NET Core on a Linux VM where is allowed to connected to the target MySQL. Refer to https://docs.microsoft.com/dotnet/core/install/linux-package-manager-ubuntu-1804
     ```bash
     wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
@@ -43,10 +44,11 @@ Further, you can leverage Azure Monitor to subscribe alert: https://docs.microso
     ![image](https://user-images.githubusercontent.com/17153057/188050299-7a1e5f79-d21a-430e-bc5c-0fa036e2effe.png)
 
 2. Navigate to Log Analytics Workspace and find the needed Workspace ID and Key shown as below
-   ![image](https://user-images.githubusercontent.com/17153057/188048773-b6190e32-1105-4737-9c86-3939ced15cdc.png)
-
+   
 
 3. Use Kusto query in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
+
+![image](https://user-images.githubusercontent.com/17153057/188048773-b6190e32-1105-4737-9c86-3939ced15cdc.png)
 
 
 >Disclaimer: This sample code is available AS IS with no warranties and support from Microsoft. Please raise an issue in Github if you encounter any issues and I will try our best to address it.
