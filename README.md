@@ -38,6 +38,7 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     sudo dotnet run
     ```
     A success output could be like below
+    
     ![image](https://user-images.githubusercontent.com/17153057/188066376-21807748-049f-4f28-94e2-aed8f36f3627.png)
 
 
