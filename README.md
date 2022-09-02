@@ -51,10 +51,10 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     ```  
   ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
    
-3. Use Kusto query in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
+3. Use [Kusto query](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/) in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
     ![image](https://user-images.githubusercontent.com/17153057/188055029-ad604272-3709-4ccc-b9c6-70a02cdf8db3.png)
 
-
+## Sample Kusto Query 
 
 >Disclaimer: This sample code is available AS IS with no warranties and support from Microsoft. Please raise an issue in Github if you encounter any issues and I will try our best to address it.
 
