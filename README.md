@@ -2,14 +2,25 @@
 
 MySQL performance_schema.global_status have rich internal functioning metrics, and the stored metrics are the snapshot of a particular point of time when you select the metric table. When troubleshooting the problem, we need to review and accumulate the historical metrics data with powerful query functions like [Azure Monitor Kusto Queries](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/query-language) to help understand the overall status. In this tool, it will introduce how to post the metrics to Azure Monitor Log Analytics Workspace and leverage the powerful Kusto query language to monitor the MySQL statistics metrics.
 
-## Ingest the Metrics to external monitoring tool – Azure Monitor:
-1.  We need to run the ingestion code side by side on the same VM. The ingestion sample code will query the MySQL performance_schema.global_status metrics then post the data to the Logical Workspace in a regular 30-sec interval.
-2. Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. The Ingestion sample code performs POST Azure Monitor custom log through HTTP REST API: [Link](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api)
-3. The ingestion sample code is developed with .NET Core 6.0, and you could check out from the [GitHub repo](https://github.com/ShawnXxy/AzMy-Metrics-Bin.git)
+Here are some details about the sample:
+1. It is a console application which will ask for the input of the connection string for MySQL, (Log Workspace) custom ID and Shared key. 
+2. We need to run the ingestion code side by side in a VM that is allowed to connected to the target MySQL. The ingestion sample code will query the MySQL performance_schema.global_status metrics and then post the data to the Logical Workspace in a regular 30-sec interval.
 
+Below is a sample turnout that you can monitor workload like amount of DML, DDL, buffer pool usage, data read/write, etc. that could be useful when inestigating performance or usage.
+Further, you can leverage Azure Monitor to subscribe alert: https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/tutorial-log-alert
+![image](https://user-images.githubusercontent.com/17153057/188049380-867e90b2-5e2d-4ae4-a2b9-ad3c247f71e7.png)
 
-## Detail usage instructions about the sample ingesting code:
-1. Install .NET Core on the Linux VM where ProxySQL is located. Refer to https://docs.microsoft.com/dotnet/core/install/linux-package-manager-ubuntu-1804
+## Prerequisite
+    - Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. The Ingestion sample code performs POST Azure Monitor custom log through HTTP REST API: [Link](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/data-collector-api). Get the Custom ID and Shared Key of the Log Analytics Workspace that you will be asked when running the app
+    ```text
+    1)	In the Azure portal, locate your Log Analytics workspace.
+    2)	Select Advanced Settings and then Connected Sources.
+    3)	To the right of Workspace ID, select the copy icon, and then paste the ID as the value of the Customer ID input for the sample application input.
+    4)	To the right of Primary Key, select the copy icon, and then paste the ID as the value of the Shared Key input for the sample application input.
+    ```
+    ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
+    
+    - The ingestion sample code is developed with .NET Core 6.0. Install .NET Core on a Linux VM where is allowed to connected to the target MySQL. Refer to https://docs.microsoft.com/dotnet/core/install/linux-package-manager-ubuntu-1804
     ```bash
     wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
@@ -19,29 +30,24 @@ MySQL performance_schema.global_status have rich internal functioning metrics, a
     sudo apt-get update
     sudo apt-get install dotnet-sdk-6.0
     ```
-2. Get the Custom ID and Shared Key of the Log Analytics Workspace
-    ```text
-    1)	In the Azure portal, locate your Log Analytics workspace.
-    2)	Select Advanced Settings and then Connected Sources.
-    3)	To the right of Workspace ID, select the copy icon, and then paste the ID as the value of the Customer ID input for the sample application input.
-    4)	To the right of Primary Key, select the copy icon, and then paste the ID as the value of the Shared Key input for the sample application input.
-    ```
-    ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
 
-3. Checkout the sample code and run:
+## Detail usage instructions about the sample ingesting code:
+1. Checkout the sample code and run:
     ```bash
     git clone https://github.com/ShawnXxy/AzMy-Metrics-Bin.git
     cd AzMy-Metrics-Bin
     dotnet build
     sudo dotnet run
     ```
+    A success output could be like below
+    ![image](https://user-images.githubusercontent.com/17153057/188050299-7a1e5f79-d21a-430e-bc5c-0fa036e2effe.png)
 
-    Here are some details about the sample:
-    - It is a console application which will ask for the input of the connection string for MySQL, (Log Workspace) custom ID and Shared key.
-    - The sample currently register a 30-sec timer to periodically access the MySQL performance_schema.global_status tables through MySQL protocol and post data into the Log Analytics Workspace
-    - The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
+2. Navigate to Log Analytics Workspace and find the needed Workspace ID and Key shown as below
+   ![image](https://user-images.githubusercontent.com/17153057/188048773-b6190e32-1105-4737-9c86-3939ced15cdc.png)
 
-4. Use Kusto query in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data.
+
+3. Use Kusto query in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
+
 
 >Disclaimer: This sample code is available AS IS with no warranties and support from Microsoft. Please raise an issue in Github if you encounter any issues and I will try our best to address it.
 
