@@ -38,7 +38,8 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     sudo dotnet run
     ```
     A success output could be like below
-    ![image](https://user-images.githubusercontent.com/17153057/188050299-7a1e5f79-d21a-430e-bc5c-0fa036e2effe.png)
+    ![image](https://user-images.githubusercontent.com/17153057/188066376-21807748-049f-4f28-94e2-aed8f36f3627.png)
+
 
 2. Target MYSQL host, username, and password will be asked at prompt. Besides, navigate to Log Analytics Workspace and find the needed Workspace ID and Key shown as below: 
     ```text
@@ -46,8 +47,7 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     2)	Select Advanced Settings and then Connected Sources.
     3)	To the right of Workspace ID, select the copy icon, and then paste the ID as the value of the Customer ID input for the sample application input.
     4)	To the right of Primary Key, select the copy icon, and then paste the ID as the value of the Shared Key input for the sample application input.
-    ```
-  
+    ```  
   ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
    
 3. Use Kusto query in Log Analytics Workspace to operate the MySQL performance_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
