@@ -29,6 +29,8 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     sudo apt-get install dotnet-sdk-6.0
     ```
 - Making sure parameter ***show_compatibility_56*** is enabled. It should be OFF by default, you can check it and modify it in Azure Portal
+    ![image](https://user-images.githubusercontent.com/17153057/188105338-3c0bede3-512e-439f-b16a-41ae14bf1670.png)
+
 
 ## Detail usage instructions about the sample ingesting code:
 1. Checkout the sample code and run:
