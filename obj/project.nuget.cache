@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7Mfh+xSWn63G/+tM/ycNlF+gmwJ6H0/zPcsCGaTlWi2W/EfKAYaqt6zgozcQ3RwiK9G1k2jxuWIO856AulOmdg==",
+  "dgSpecHash": "TIjsyay3pcaJrNaWv9WOsvntgslSR2QxahCV9ZhoK0yozfCLnDZWU3v+U1o5ZkAyWSyC2oOaRbCH4LxFs/Z5BA==",
   "success": true,
   "projectFilePath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights\\2.21.0\\microsoft.applicationinsights.2.21.0.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights.agent.intercept\\2.4.0\\microsoft.applicationinsights.agent.intercept.2.4.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights.dependencycollector\\2.21.0\\microsoft.applicationinsights.dependencycollector.2.21.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights.eventcountercollector\\2.21.0\\microsoft.applicationinsights.eventcountercollector.2.21.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights.perfcountercollector\\2.21.0\\microsoft.applicationinsights.perfcountercollector.2.21.0.nupkg.sha512",
@@ -13,8 +14,6 @@
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights.windowsserver.telemetrychannel\\2.21.0\\microsoft.applicationinsights.windowsserver.telemetrychannel.2.21.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.applicationinsights.workerservice\\2.21.0\\microsoft.applicationinsights.workerservice.2.21.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.aspnet.telemetrycorrelation\\1.0.8\\microsoft.aspnet.telemetrycorrelation.1.0.8.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\1.0.0\\microsoft.extensions.caching.abstractions.1.0.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.caching.memory\\1.0.0\\microsoft.extensions.caching.memory.1.0.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.configuration\\2.1.1\\microsoft.extensions.configuration.2.1.1.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.1.1\\microsoft.extensions.configuration.abstractions.2.1.1.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.configuration.binder\\2.1.1\\microsoft.extensions.configuration.binder.2.1.1.nupkg.sha512",
@@ -25,47 +24,13 @@
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.logging.applicationinsights\\2.21.0\\microsoft.extensions.logging.applicationinsights.2.21.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.options\\2.1.1\\microsoft.extensions.options.2.1.1.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\microsoft.extensions.primitives\\2.1.1\\microsoft.extensions.primitives.2.1.1.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\xixia\\.nuget\\packages\\mysqlconnector\\2.1.13\\mysqlconnector.2.1.13.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.diagnostics.debug\\4.0.11\\system.diagnostics.debug.4.0.11.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.diagnostics.performancecounter\\4.7.0\\system.diagnostics.performancecounter.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.globalization\\4.0.11\\system.globalization.4.0.11.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.io\\4.1.0\\system.io.4.1.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.io.filesystem.accesscontrol\\4.7.0\\system.io.filesystem.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.linq\\4.1.0\\system.linq.4.1.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.reflection\\4.1.0\\system.reflection.4.1.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.reflection.primitives\\4.0.1\\system.reflection.primitives.4.0.1.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.resources.resourcemanager\\4.0.1\\system.resources.resourcemanager.4.0.1.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.runtime\\4.1.0\\system.runtime.4.1.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.runtime.extensions\\4.1.0\\system.runtime.extensions.4.1.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.text.encoding\\4.0.11\\system.text.encoding.4.0.11.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.threading\\4.0.11\\system.threading.4.0.11.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.threading.tasks\\4.0.11\\system.threading.tasks.4.0.11.nupkg.sha512",
-    "C:\\Users\\xixia\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+    "C:\\Users\\xixia\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\xixia\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.TelemetryCorrelation 1.0.8' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.TelemetryCorrelation",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -46,11 +46,7 @@ namespace AzureMySQLMetricsCollector
             
             telemetryClient.TrackEvent("AzMyStatusBinEvent");
 
-            // Explicitly call Flush() followed by sleep is required in Console Apps.
-            // This is to ensure that even if application terminates, telemetry is sent to the back-end.
-            telemetryClient.Flush();
-            Task.Delay(500000).Wait();
-
+            
             try
             {
                 // Input MySQL connections tring
@@ -108,6 +104,11 @@ namespace AzureMySQLMetricsCollector
             {
                 Console.WriteLine(e);
             }
+
+            // Explicitly call Flush() followed by sleep is required in Console Apps.
+            // This is to ensure that even if application terminates, telemetry is sent to the back-end.
+            telemetryClient.Flush();
+            Task.Delay(500000).Wait();
         }
 
         private static void OnTimedEvent(Object source, ElapsedEventArgs e,string myHost,string myUser, string myPwd)
