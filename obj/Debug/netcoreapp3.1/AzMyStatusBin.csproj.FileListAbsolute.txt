@@ -1,0 +1,5 @@
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\AzMyStatusBin.csproj.AssemblyReference.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\AzMyStatusBin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\AzMyStatusBin.AssemblyInfoInputs.cache
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\AzMyStatusBin.AssemblyInfo.cs
+C:\Users\xixia\Orcas\AzMy-Metrics-Bin\obj\Debug\netcoreapp3.1\AzMyStatusBin.csproj.CoreCompileInputs.cache
