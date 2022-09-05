@@ -9,6 +9,12 @@ using System.Timers;
 using System.Threading;
 using AzMyStatusBin;
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
+using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
+using Microsoft.ApplicationInsights;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace AzureMySQLMetricsCollector
 {
@@ -20,8 +26,31 @@ namespace AzureMySQLMetricsCollector
         static StatusLog statusLog = null;
         static void Main(string[] args)
         {
-            TelemetryConfiguration config = TelemetryConfiguration.Active; // Reads ApplicationInsights.config file if present: https://docs.microsoft.com/en-us/azure/azure-monitor/app/console
+            // Reads ApplicationInsights.config file if present: https://docs.microsoft.com/en-us/azure/azure-monitor/app/console
             
+            // Create the DI container.
+            IServiceCollection services = new ServiceCollection();                   
+
+            // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
+            // Hence instrumentation key must be specified here.
+            services.AddApplicationInsightsTelemetryWorkerService("aa7c610a-626a-469e-84b0-3d552d2a2c3c");
+
+            // Build ServiceProvider.
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            // Obtain logger instance from DI.
+            ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+
+            // Obtain TelemetryClient instance from DI, for additional manual tracking or to flush.
+            var telemetryClient = serviceProvider.GetRequiredService<TelemetryClient>();
+            
+            telemetryClient.TrackEvent("AzMyStatusBinEvent");
+
+            // Explicitly call Flush() followed by sleep is required in Console Apps.
+            // This is to ensure that even if application terminates, telemetry is sent to the back-end.
+            telemetryClient.Flush();
+            Task.Delay(500000).Wait();
+
             try
             {
                 // Input MySQL connections tring
