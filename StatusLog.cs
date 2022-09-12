@@ -64,11 +64,11 @@ namespace AzMyStatusBin
                         string [] words = s.Split(' ');
                         
                         jsonString.Append("{");
-                        jsonString.Append(string.Format("\"{0}\":\"{1}\":\"{2}\"", "Time", words[0]));
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "Time", words[0]));
                         jsonString.Append(",");
-                        jsonString.Append(string.Format("\"{0}\":\"{1}\":\"{2}\"", "MetricName", words[1]));
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "MetricName", words[1]));
                         jsonString.Append(",");
-                        jsonString.Append(string.Format("\"{0}\":\"{1}\":\"{2}\"", "MetricValue", words[2]));
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "MetricValue", words[2]));
                         jsonString.Append(",");
                         jsonString.Append(string.Format("\"{0}\":\"{1}\":\"{2}\"", "LogicalServerName", words[3]));
                         jsonString.Append("},");
