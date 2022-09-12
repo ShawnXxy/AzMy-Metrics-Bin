@@ -54,16 +54,19 @@ namespace AzMyStatusBin
                     d, insert the substracted value into the column of the table we created above [OPTIONAL]
 
                     -- c get the subtraction
-                    SELECT m.metric_name, g.VARIABLE_VALUE - m.origin_metric_value AS metric_value FROM
+                    SELECT m.metric_name, g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, v.Variable_value AS logical_server_name FROM
                         -- a get the current value from information_schema
                         (SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_status) AS g,
                         -- b get the current stored value in metric_value column
-                        (SELECT metric_name, origin_metric_value FROM globalstatus.my_global_status) AS m
+                        (SELECT metric_name, origin_metric_value FROM globalstatus.my_global_status) AS m,
+                        (SELECT Variable_value FROM INFORMATION_SCHEMA.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
                     WHERE m.metric_name = g.VARIABLE_NAME;
                 */
-                command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
+                command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, v.Variable_value AS logical_server_name from 
                         (select VARIABLE_NAME,VARIABLE_VALUE from information_schema.global_status) AS g,
-                        (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                        (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m, 
+                        (SELECT Variable_value FROM INFORMATION_SCHEMA.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
+                        WHERE m.metric_name = g.VARIABLE_NAME;";
                 command.ExecuteNonQuery();
                 Console.WriteLine("Get the changed values and output it to a file");
 

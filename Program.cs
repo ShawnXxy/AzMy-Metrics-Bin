@@ -27,7 +27,8 @@ namespace AzureMySQLMetricsCollector
         static void Main(string[] args)
         {
             // Reads ApplicationInsights.config file if present: https://docs.microsoft.com/en-us/azure/azure-monitor/app/console
-            
+            // Sample: https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/examples/ConsoleApp/Program.cs
+
             // Create the DI container.
             IServiceCollection services = new ServiceCollection();                   
 
@@ -43,7 +44,8 @@ namespace AzureMySQLMetricsCollector
 
             // Obtain TelemetryClient instance from DI, for additional manual tracking or to flush.
             var telemetryClient = serviceProvider.GetRequiredService<TelemetryClient>();
-            
+
+
             telemetryClient.TrackEvent("AzMyStatusBinEvent");
 
             
