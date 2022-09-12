@@ -5,7 +5,7 @@
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
-| where LogicalServerName =~ "{replace to your server name here}"
+| where LogicalServerName_s =~ "{replace to your server name here}"
 | where MetricName_s in (
     'QUERIES',
     'COM_DELETE', 
@@ -42,7 +42,7 @@ AzMyStatus_CL
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
-| where LogicalServerName =~ "{replace to your server name here}"
+| where LogicalServerName_s =~ "{replace to your server name here}"
 | where  MetricName_s  in (
     'BINLOG_IO_READ', 
     'BINLOG_IO_WRITTEN', 
@@ -80,7 +80,7 @@ AzMyStatus_CL
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
-| where LogicalServerName =~ "{replace to your server name here}"
+| where LogicalServerName_s =~ "{replace to your server name here}"
 | where MetricName_s in (
     'CREATED_TMP_DISK_TABLES', 
     'CREATED_TMP_FILES', 
@@ -101,7 +101,7 @@ AzMyStatus_CL
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
-| where LogicalServerName =~ "{replace to your server name here}"
+| where LogicalServerName_s =~ "{replace to your server name here}"
 | where MetricName_s in (
     'INNODB_BUFFER_POOL_READ_REQUESTS', 
     'INNODB_BUFFER_POOL_READS', 
