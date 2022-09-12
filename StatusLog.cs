@@ -70,7 +70,7 @@ namespace AzMyStatusBin
                         jsonString.Append(",");
                         jsonString.Append(string.Format("\"{0}\":\"{1}\"", "MetricValue", words[2]));
                         jsonString.Append(",");
-                        jsonString.Append(string.Format("\"{0}\":\"{1}\":\"{2}\"", "LogicalServerName", words[3]));
+                        jsonString.Append(string.Format("\"{0}\":\"{1}\"", "LogicalServerName", words[3]));
                         jsonString.Append("},");
                     }
 
