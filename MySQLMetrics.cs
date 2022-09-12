@@ -81,13 +81,13 @@ namespace AzMyStatusBin
                         Directory.CreateDirectory(directory_path);
                     }
                     StreamWriter writer = new StreamWriter(Path.Combine(directory_path, file_name), true);
-//                     writer.WriteLineAsync("Time Metrics_name Metrics_value");
+
                     while (reader.Read())
                     {
                         DateTime dt = DateTime.Now;
                         
                         writer.Write(dt.GetDateTimeFormats('s')[0].ToString());
-                        writer.WriteLine(string.Format(" {0} {1}", reader.GetString(0), reader.GetDouble(1)));
+                        writer.WriteLine(string.Format(" {0} {1} {2}", reader.GetString(0), reader.GetDouble(1), reader.GetString(2)));
 
                     }
                     writer.Close();
