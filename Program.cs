@@ -131,9 +131,14 @@ namespace AzureMySQLMetricsCollector
                 conn.Open();
                 using (var command = conn.CreateCommand())
                 {
-                    command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value from 
-                                 (select VARIABLE_NAME,VARIABLE_VALUE from information_schema.global_status) AS g,
-                                 (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m WHERE m.metric_name = g.VARIABLE_NAME;";
+                    command.CommandText = @"select m.metric_name,
+                                        g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, 
+                                        v.Variable_value AS logical_server_name 
+                                    from 
+                                         (select VARIABLE_NAME,VARIABLE_VALUE from information_schema.global_status) AS g,
+                                         (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m,
+                                         (SELECT Variable_value FROM INFORMATION_SCHEMA.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
+                                    WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
 
                     using (var reader = command.ExecuteReader())

@@ -5,6 +5,7 @@
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
+| where LogicalServerName =~ "{replace to your server name here}"
 | where MetricName_s in (
     'Queries',
     'Com_delete', 
@@ -41,6 +42,7 @@ AzMyStatus_CL
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
+| where LogicalServerName =~ "{replace to your server name here}"
 | where  MetricName_s  in (
     'Binlog_io_read', 
     'Binlog_io_written', 
@@ -78,6 +80,7 @@ AzMyStatus_CL
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
+| where LogicalServerName =~ "{replace to your server name here}"
 | where MetricName_s in (
     'Created_tmp_disk_tables', 
     'Created_tmp_files', 
@@ -98,6 +101,7 @@ AzMyStatus_CL
 /////////////////////////////
 AzMyStatus_CL
 | where Time_t >= ago(1h)
+| where LogicalServerName =~ "{replace to your server name here}"
 | where MetricName_s in (
     'Innodb_buffer_pool_read_requests', 
     'Innodb_buffer_pool_reads', 
