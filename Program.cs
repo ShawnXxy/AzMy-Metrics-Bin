@@ -148,7 +148,7 @@ namespace AzureMySQLMetricsCollector
                         {
                             DateTime dt = DateTime.Now;
                             writer2.Write(dt.GetDateTimeFormats('s')[0].ToString());
-                            writer2.WriteLine(string.Format(" {0} {1}", reader.GetString(0), reader.GetDouble(1)));//写入一行
+                            writer2.WriteLine(string.Format(" {0} {1} {2}", reader.GetString(0), reader.GetDouble(1), reader.GetString(2)));//写入一行
 
                         }
                         writer2.Close();
