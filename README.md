@@ -40,11 +40,7 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     dotnet build
     sudo dotnet run
     ```
-    A success output could be like below
-    
-    ![image](https://user-images.githubusercontent.com/17153057/188066376-21807748-049f-4f28-94e2-aed8f36f3627.png)
-
-
+   
 2. Target MYSQL host, username, and password will be asked at prompt. Besides, navigate to Log Analytics Workspace and find the needed Workspace ID and Key shown as below: 
     ```text
     1)	In the Azure portal, locate your Log Analytics workspace.
@@ -52,13 +48,24 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     3)	To the right of Workspace ID, select the copy icon, and then paste the ID as the value of the Customer ID input for the sample application input.
     4)	To the right of Primary Key, select the copy icon, and then paste the ID as the value of the Shared Key input for the sample application input.
     ```  
-  ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
+  
+    ![image](https://user-images.githubusercontent.com/17153057/185856549-c74cee3a-9e97-4f51-b072-074a6511b9f3.png)
+
+    A success output could be like below:
+
+    ![image](https://user-images.githubusercontent.com/17153057/188066376-21807748-049f-4f28-94e2-aed8f36f3627.png)
    
 3. Use [Kusto query](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/) in Log Analytics Workspace to operate the MySQL information_schema.global_status metrics data. The global_status table name would be used as the Custom Log Type Name, and the Log Analytics will automatically add _CL suffix to generate the complete Custom Log Type Name. For example, the  table global_status will become global_status_CL in the Custom Logs list. 
     ![image](https://user-images.githubusercontent.com/17153057/188055029-ad604272-3709-4ccc-b9c6-70a02cdf8db3.png)
 
 ## Sample Kusto Query 
 [This](/Sample%20Kusto%20Query.md) summarized some sample Kusto queries to monitor the MySQL statistics metrics.
+
+## Limitation
+* It has be run in a LInux machine that is allowed to connected to the target MySQL.
+* It does not add support for the log rotation monitoring by FileSystemWatcher. The saved output would constantly grow for current version.
+* When VM restarted or targeted MySQL server restarted, or any reasons the connections lost to MySQL, the ingestion sample code will need to be restarted manually.
+
 
 ---
 
