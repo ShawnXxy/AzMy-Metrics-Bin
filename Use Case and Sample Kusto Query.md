@@ -20,6 +20,8 @@ These are most common queries that being frequently executed in a database. It i
 Below KQL summarizes the query pattern of DML in a database. It will show the total number of DML queries executed in the given time window, and the max execution count of each type of DML query. 
 
 User can monitor the trend of DML query execution count and the max execution count of each type of DML query to understand the query pattern of DML. This would be useful when analyzing resource usage like CPU consumption.
+![image](https://user-images.githubusercontent.com/17153057/198525147-db17c297-ec09-485e-aadd-bc3f812750e4.png)
+
 ````kql
 //////////////////////////////
 //  MySQL DML
