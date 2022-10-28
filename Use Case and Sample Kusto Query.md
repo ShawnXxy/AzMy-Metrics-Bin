@@ -146,6 +146,7 @@ AzMyStatus_CL
 | order by Time_t asc
 | render timechart 
 ````
+![image](https://user-images.githubusercontent.com/17153057/198526536-9c8be545-ad17-47df-a12a-d20360cab521.png)
 
 
 
@@ -186,3 +187,4 @@ AzMyStatus_CL
 | order by Time_t asc
 | render timechart 
 ````
+![image](https://user-images.githubusercontent.com/17153057/198526795-2799b3cb-9ea9-434b-a226-e33a84d57f1a.png)
