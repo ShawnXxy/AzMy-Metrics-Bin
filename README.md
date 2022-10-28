@@ -5,7 +5,7 @@ MySQL information_schema.global_status have rich internal functioning metrics, a
 Here are some details about the tool:
 1. It is a console application which will ask for the input of the connection string for MySQL, (Log Workspace) custom ID and Shared key. 
 2. We need to run the ingestion code side by side in a VM that is allowed to connected to the target MySQL. The ingestion sample code will query the MySQL information_schema.global_status metrics and then post the data to the Logical Workspace in a regular 30-sec interval.
-3. Data stored in Azure Log Analytics and data retention can be controlled based on preference. Details can be referred at https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1%2Cportal-2
+3. Data stored in Azure Log Analytics and data retention can be controlled based on preference. Details can be referred at [Configure the default workspace retention policy](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1%2Cportal-2)
 
 Below is a sample turnout that you can monitor workload like amount of DML, DDL, buffer pool usage, data read/write, etc. that could be useful when inestigating performance or usage.
 Further, you can leverage Azure Monitor to subscribe alert based on preference: https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/tutorial-log-alert
