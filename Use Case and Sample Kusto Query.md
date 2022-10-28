@@ -20,7 +20,7 @@ These are most common queries that being frequently executed in a database. It i
 Below KQL summarizes the query pattern of DML in a database. It will show the total number of DML queries executed in the given time window, and the max execution count of each type of DML query. 
 
 User can monitor the trend of DML query execution count and the max execution count of each type of DML query to understand the query pattern of DML. This would be useful when analyzing resource usage like CPU consumption.
-![image](https://user-images.githubusercontent.com/17153057/198525147-db17c297-ec09-485e-aadd-bc3f812750e4.png)
+![image](https://user-images.githubusercontent.com/17153057/198525534-85fbdcd4-6f73-474e-a778-56d9fd4c2291.png)
 
 ````kql
 //////////////////////////////
@@ -59,6 +59,8 @@ AzMyStatus_CL
 | order by Time_t asc
 | render timechart
 ````
+![image](https://user-images.githubusercontent.com/17153057/198525629-cfdbee36-1ee5-4754-8f15-2b3b7d3f0754.png)
+
 Applying the same idea, user can modify the above KQL to monitor the query pattern of DDL, which could be used to analyze performance issues related to lockings or replication latency.
 
 ### Understand the workload of detaild IO
