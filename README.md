@@ -60,7 +60,7 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     ![image](https://user-images.githubusercontent.com/17153057/188055029-ad604272-3709-4ccc-b9c6-70a02cdf8db3.png)
 
 ## Sample Kusto Query 
-[This](/Sample%20Kusto%20Query.md) summarized some sample Kusto queries to monitor the MySQL statistics metrics.
+[This](/Use%20Case%20and%20Sample%20Kusto%20Query.md) summarized some sample Kusto queries to monitor the MySQL statistics metrics.
 
 ## Limitation
 * It has be run in a LInux machine that is allowed to connected to the target MySQL.
