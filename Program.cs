@@ -1,20 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 // Console.WriteLine("Hello, World!");
 
-using System;
-using System.Threading.Tasks;
-
 using MySqlConnector;
 using System.Timers;
-using System.Threading;
 using AzMyStatusBin;
-using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.ApplicationInsights.Channel;
-using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
-using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 using Microsoft.ApplicationInsights;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Security;
+using System.Runtime.InteropServices;
 
 namespace AzureMySQLMetricsCollector
 {
@@ -48,25 +42,31 @@ namespace AzureMySQLMetricsCollector
 
             telemetryClient.TrackEvent("AzMyStatusBinEvent");
 
-            
+            // Input MySQL connections tring
+            Console.WriteLine("Please input the the MySQL connection information in the following");
+            Console.WriteLine("MySQL hostname (Full FQDN):");
+            string myHost = Console.ReadLine()!;
+
+            Console.WriteLine("MySQL username:");
+            string myUser = Console.ReadLine()!;
+
+            Console.WriteLine("MySQL password:");
+            SecureString myPwd = GetPassword();
+            // Console.WriteLine("SSL path if any:");
+            // string mySsl = Console.ReadLine();
+
+            //input the workspace information
+            Console.WriteLine("Would like to save output to Azure Log Analytics Workspace (Y/N)?");
+            bool saveToLaw = (Console.ReadLine().Trim().ToLower() == "y" );
+
             try
             {
-                // Input MySQL connections tring
-                Console.WriteLine("Please input the the MySQL connection information in the following");
-                Console.WriteLine("MySQL hostname (Full FQDN):");
-                string myHost = Console.ReadLine()!;
-                Console.WriteLine("MySQL username:");
-                string myUser = Console.ReadLine()!; 
-                Console.WriteLine("MySQL password:");
-                string myPwd = Console.ReadLine()!;
-                // Console.WriteLine("SSL path if any:");
-                // string mySsl = Console.ReadLine();
-
+                
                 var builder = new MySqlConnectionStringBuilder
                 {
                     Server = myHost,
                     UserID = myUser,
-                    Password = myPwd,
+                    Password = ConvertToUnsecureString(myPwd),
                     // SslMode = MySqlSslMode.Required,
                 };
                 conn ??= new MySqlConnection(builder.ConnectionString);
@@ -75,24 +75,26 @@ namespace AzureMySQLMetricsCollector
                 Console.WriteLine("============");
 
                 myMetrics ??= new MySQLMetrics(conn);
+               
+                
+                if (saveToLaw) {
+                    Console.WriteLine("Please go to Logistic-Analytics-Workspace advanced setting, to copy Workspace-ID and Primary-Key");
+                    Console.WriteLine("Workspace ID:");
+                    string strWorkspaceID = Console.ReadLine()!;
+                    Console.WriteLine("Primary Key:");
+                    string strPrimaryKey = Console.ReadLine()!;
 
-                //input the workspace information
-                Console.WriteLine("Please go to Logistic-Analytics-Workspace advanced setting, to copy Workspace-ID and Primary-Key");
-                Console.WriteLine("Workspace ID:");
-                string strWorkspaceID = Console.ReadLine()!;
-                Console.WriteLine("Primary Key:");
-                string strPrimaryKey = Console.ReadLine()!;
-
-                logAnalyticsWorkspace ??= new LAWorkspace
-                {
-                    CustomerId = strWorkspaceID,
-                    SharedKey = strPrimaryKey
-                };
+                    logAnalyticsWorkspace ??= new LAWorkspace
+                    {
+                        CustomerId = strWorkspaceID,
+                        SharedKey = strPrimaryKey
+                    };
+                }          
 
                 statusLog = new StatusLog(@"/var/lib/custom/azMy-metrics-collector", @"azMy_global_status.log");
 
                 var aTimer = new System.Timers.Timer(30000);
-                aTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) => OnTimedEvent(s, e, myHost,myUser,myPwd));
+                aTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) => OnTimedEvent(s, e, myHost,myUser,myPwd, saveToLaw));
                 aTimer.AutoReset = true;
                 aTimer.Enabled = true;
 
@@ -113,14 +115,57 @@ namespace AzureMySQLMetricsCollector
             Task.Delay(500000).Wait();
         }
 
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e,string myHost,string myUser, string myPwd)
+        // In this code, the GetPassword method reads the password character by character, and appends it to a SecureString.
+        // The password characters are not displayed in the console - instead a '*' is displayed for each character
+        private static SecureString GetPassword()
+        {
+            SecureString password = new SecureString();
+
+            ConsoleKeyInfo keyInfo;
+            do
+            {
+                keyInfo = Console.ReadKey(intercept: true);
+                if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    password.AppendChar(keyInfo.KeyChar);
+                    Console.Write("*");
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password.RemoveAt(password.Length - 1);
+                    Console.Write("\b \b");
+                }
+            } while (keyInfo.Key != ConsoleKey.Enter);
+            Console.WriteLine();
+
+            return password;
+        }
+
+        private static string ConvertToUnsecureString(SecureString securePassword)
+        {
+            if (securePassword == null)
+                throw new ArgumentNullException("securePassword");
+
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+                return Marshal.PtrToStringUni(unmanagedString);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e,string myHost,string myUser, SecureString myPwd, bool saveToLaw)
         {
             Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
             var builder = new MySqlConnectionStringBuilder
             {
                 Server = myHost,
                 UserID = myUser,
-                Password = myPwd,
+                Password = ConvertToUnsecureString(myPwd),
             };
         
             conn = new MySqlConnection(builder.ConnectionString);
@@ -135,9 +180,9 @@ namespace AzureMySQLMetricsCollector
                                         g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, 
                                         v.Variable_value AS logical_server_name 
                                     from 
-                                         (select VARIABLE_NAME,VARIABLE_VALUE from information_schema.global_status) AS g,
+                                         (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
                                          (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m,
-                                         (SELECT Variable_value FROM INFORMATION_SCHEMA.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
+                                         (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
                                     WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
 
@@ -153,13 +198,13 @@ namespace AzureMySQLMetricsCollector
                         }
                         writer2.Close();
                     }
-                    command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, information_schema.global_status g
+                    command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
                              SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
                     Console.WriteLine("Updated global status data change table again");
 
                     string myGlobalStatus = statusLog.GetJsonPayload();
-                    if (myGlobalStatus != null)
+                    if (!(myGlobalStatus == null || saveToLaw))
                     {
                         logAnalyticsWorkspace.InjestLog(myGlobalStatus, "AzMyStatus");
                     }
@@ -170,6 +215,10 @@ namespace AzureMySQLMetricsCollector
             }
 
         }
+
+        
+
+        
     }
 }
 

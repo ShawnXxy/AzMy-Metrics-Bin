@@ -2688,11 +2688,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
+      "projectUniqueName": "C:\\Users\\xixia\\ShawnX\\GitHub\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
       "projectName": "AzMyStatusBin",
-      "projectPath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
+      "projectPath": "C:\\Users\\xixia\\ShawnX\\GitHub\\AzMy-Metrics-Bin\\AzMyStatusBin.csproj",
       "packagesPath": "C:\\Users\\xixia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xixia\\Orcas\\AzMy-Metrics-Bin\\obj\\",
+      "outputPath": "C:\\Users\\xixia\\ShawnX\\GitHub\\AzMy-Metrics-Bin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xixia\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2715,6 +2715,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2761,12 +2766,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.31, 6.0.31]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.31, 6.0.31]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.31, 6.0.31]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.31, 6.0.31]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   },
