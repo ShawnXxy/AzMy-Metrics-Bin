@@ -20,6 +20,7 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
 ## Prerequisite
 - Provision a [Log Analytics Workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-create-workspace) to store the posted metrics. 
 - The ingestion sample code is developed with .NET Core 6.0. Install .NET Core on a Linux VM where is allowed to connected to the target MySQL. Refer to https://docs.microsoft.com/dotnet/core/install/linux-package-manager-ubuntu-1804
+  
     ```bash
     wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
@@ -29,7 +30,10 @@ The Ingestion sample code performs POST Azure Monitor custom log through HTTP RE
     sudo apt-get update
     sudo apt-get install dotnet-sdk-6.0
     ```
-- Making sure parameter ***show_compatibility_56*** is enabled. It should be OFF by default, you can check it and modify it in Azure Portal
+    If you hit error like "A fatal error occurred. The folder [/usr/share/dotnet/host/fxr] does not exist", it is a result of mixed packages.
+    This `dotnet` packages are part of the Ubuntu repo, and they are conflicting with the Microsoft packages.  Please refer to https://stackoverflow.com/questions/74174560/dotnet-sdk-not-installing-in-ubuntu-22-04 to fix it.
+    
+- For MySQL major version lower than 8, please making sure parameter ***show_compatibility_56*** is enabled. It should be OFF by default, you can check it and modify it in Azure Portal
     ![image](https://user-images.githubusercontent.com/17153057/188105338-3c0bede3-512e-439f-b16a-41ae14bf1670.png)
 
 
