@@ -57,6 +57,8 @@ namespace AzureMySQLMetricsCollector
 
             //input the workspace information
             Console.WriteLine("Would like to save output to Azure Log Analytics Workspace (Y/N)?");
+            Console.WriteLine(" -- If \"Y\", the output will be saved and uploaded to Azure Log Analytics. Additional info will be prompted.");
+            Console.WriteLine(" -- If \"N\", the output will be saved locally at /var/lib/custom/azMy-metrics-collector/azMy_global_status.log.");
             bool saveToLaw = (Console.ReadLine().Trim().ToLower() == "y" );
 
             try
@@ -78,7 +80,7 @@ namespace AzureMySQLMetricsCollector
                
                 
                 if (saveToLaw) {
-                    Console.WriteLine("Please go to Logistic-Analytics-Workspace advanced setting, to copy Workspace-ID and Primary-Key");
+                    Console.WriteLine("Please go to your Azure Log Analytics Workspace advanced setting, to copy Workspace-ID and Primary-Key");
                     Console.WriteLine("Workspace ID:");
                     string strWorkspaceID = Console.ReadLine()!;
                     Console.WriteLine("Primary Key:");
