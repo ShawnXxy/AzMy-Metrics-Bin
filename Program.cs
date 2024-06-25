@@ -95,7 +95,7 @@ namespace AzureMySQLMetricsCollector
 
                 statusLog = new StatusLog(@"/var/lib/custom/azMy-metrics-collector", @"azMy_global_status.log");
 
-                var aTimer = new System.Timers.Timer(30000);
+                var aTimer = new System.Timers.Timer(60000); // 60sec
                 aTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) => OnTimedEvent(s, e, myHost,myUser,myPwd, saveToLaw));
                 aTimer.AutoReset = true;
                 aTimer.Enabled = true;
@@ -103,6 +103,9 @@ namespace AzureMySQLMetricsCollector
                 Console.WriteLine("\nPress the Enter key to exit the application...");
                 Console.WriteLine("The application started at {0}", DateTime.Now.ToString());
                 Console.ReadLine();
+                aTimer.Stop();
+                aTimer.Dispose();
+                conn?.Close();
                 Console.WriteLine("Terminating the application...");
 
             }

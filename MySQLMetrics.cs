@@ -53,7 +53,7 @@ namespace AzMyStatusBin
                         -- a get the current value from performance_schema
                         (SELECT VARIABLE_NAME, VARIABLE_VALUE FROM performance_schema.global_status) AS g,
                         -- b get the current stored value in metric_value column
-                        (SELECT metric_name, origin_metric_value FROM globalstatus.my_global_status) AS m,
+                        (SELECT metric_name, origin_metric_value FROM azmy_metrics_collector.azmy_global_status) AS m,
                         (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
                     WHERE m.metric_name = g.VARIABLE_NAME;
                 */
