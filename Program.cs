@@ -56,9 +56,10 @@ namespace AzureMySQLMetricsCollector
             // string mySsl = Console.ReadLine();
 
             //input the workspace information
-            Console.WriteLine("Would like to save output to Azure Log Analytics Workspace (Y/N)?");
+            Console.WriteLine("Would like to save output to Azure Log Analytics Workspace ?");
             Console.WriteLine(" -- If \"Y\", the output will be saved and uploaded to Azure Log Analytics. Additional info will be prompted.");
             Console.WriteLine(" -- If \"N\", the output will be saved locally at /var/lib/custom/azMy-metrics-collector/azMy_global_status.log.");
+            Console.WriteLine("Y/N?");
             bool saveToLaw = (Console.ReadLine().Trim().ToLower() == "y" );
 
             try
@@ -95,7 +96,7 @@ namespace AzureMySQLMetricsCollector
 
                 statusLog = new StatusLog(@"/var/lib/custom/azMy-metrics-collector", @"azMy_global_status.log");
 
-                var aTimer = new System.Timers.Timer(60000); // 60sec
+                var aTimer = new System.Timers.Timer(30000); // 30sec
                 aTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) => OnTimedEvent(s, e, myHost,myUser,myPwd, saveToLaw));
                 aTimer.AutoReset = true;
                 aTimer.Enabled = true;
@@ -184,6 +185,23 @@ namespace AzureMySQLMetricsCollector
                 conn.Open();
                 using (var command = conn.CreateCommand())
                 {
+                    // Step 3, To get the difference between current metric value and previous checked value
+                /*
+                    a, get the current value from performance_schema
+                    b, get the current stored value in metric_value column
+                    c, if metric_name matched VARIABLE_NAME from performance_schema, do the subtraction
+                    d, insert the substracted value into the column of the table we created above [OPTIONAL]
+
+                    -- c get the subtraction
+                    SELECT m.metric_name, g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, v.Variable_value AS logical_server_name FROM
+                        -- a get the current value from performance_schema
+                        (SELECT VARIABLE_NAME, VARIABLE_VALUE FROM performance_schema.global_status) AS g,
+                        -- b get the current stored value in metric_value column
+                        (SELECT metric_name, origin_metric_value FROM azmy_metrics_collector.azmy_global_status) AS m,
+                        (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
+                    WHERE m.metric_name = g.VARIABLE_NAME;
+                */
+                    Console.WriteLine("Start to capture global status data change at {0:HH:mm:ss.fff}", e.SignalTime);
                     command.CommandText = @"select m.metric_name,
                                         g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, 
                                         v.Variable_value AS logical_server_name 
@@ -193,7 +211,7 @@ namespace AzureMySQLMetricsCollector
                                          (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
                                     WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
-
+                    
                     using (var reader = command.ExecuteReader())
                     {
                         StreamWriter writer2 = new StreamWriter(@"/var/lib/custom/azMy-metrics-collector/azMy_global_status.log", true);
@@ -206,10 +224,11 @@ namespace AzureMySQLMetricsCollector
                         }
                         writer2.Close();
                     }
-                    command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
-                             SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
+
+                    // //step 4: Flush history table to make it as the next baseline
+                    command.CommandText = @"REPLACE INTO azmy_metrics_collector.azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
                     command.ExecuteNonQuery();
-                    Console.WriteLine("Captured global status data change table at {0:HH:mm:ss.fff}", e.SignalTime);
+                    Console.WriteLine("Updated base table at {0:HH:mm:ss.fff}", e.SignalTime);
 
                     string myGlobalStatus = statusLog.GetJsonPayload();
                     if (!(myGlobalStatus == null || saveToLaw))
