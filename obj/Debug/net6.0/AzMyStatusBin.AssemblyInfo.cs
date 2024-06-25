@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AzMyStatusBin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a887b3b6aca581c621f769e19b39bec1f96f78c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8ab3383252672b5c80c4a82de98760d1235bd95")]
 [assembly: System.Reflection.AssemblyProductAttribute("AzMyStatusBin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AzMyStatusBin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

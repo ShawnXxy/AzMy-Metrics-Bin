@@ -21,6 +21,16 @@ namespace AzMyStatusBin
             else
             {
                 Console.WriteLine("MySQL Global Status Log File: {0} does not exist!", _strLogFilePath);
+
+                Console.WriteLine("Log File: {0} will be created!", _strLogFilePath);
+                string directory_path = "/var/lib/custom/azMy-metrics-collector";
+                string file_name = "azMy_global_status.log";
+                if (!Directory.Exists(directory_path))
+                {
+                    Directory.CreateDirectory(directory_path);
+                }
+                StreamWriter writer = new StreamWriter(Path.Combine(directory_path, file_name), true);
+                
                 _strLogFilePath = null;
                 _strLogFileDir = null;
                 _strLogFileName = null;

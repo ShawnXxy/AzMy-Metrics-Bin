@@ -105,8 +105,11 @@ namespace AzureMySQLMetricsCollector
                 Console.ReadLine();
                 aTimer.Stop();
                 aTimer.Dispose();
-                conn?.Close();
+                
                 Console.WriteLine("Terminating the application...");
+
+                conn?.Close();
+                Console.WriteLine("MySQL connection closed.");
 
             }
             catch (Exception e)
@@ -196,7 +199,7 @@ namespace AzureMySQLMetricsCollector
                         StreamWriter writer2 = new StreamWriter(@"/var/lib/custom/azMy-metrics-collector/azMy_global_status.log", true);
                         while (reader.Read())
                         {
-                            DateTime dt = DateTime.Now;
+                            DateTime dt = DateTime.UtcNow;
                             writer2.Write(dt.GetDateTimeFormats('s')[0].ToString());
                             writer2.WriteLine(string.Format(" {0} {1} {2}", reader.GetString(0), reader.GetDouble(1), reader.GetString(2)));//写入一行
 
@@ -206,7 +209,7 @@ namespace AzureMySQLMetricsCollector
                     command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
                              SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
                     command.ExecuteNonQuery();
-                    Console.WriteLine("Updated global status data change table again");
+                    Console.WriteLine("Captured global status data change table at {0:HH:mm:ss.fff}", e.SignalTime);
 
                     string myGlobalStatus = statusLog.GetJsonPayload();
                     if (!(myGlobalStatus == null || saveToLaw))

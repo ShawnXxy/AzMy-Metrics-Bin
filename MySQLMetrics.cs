@@ -37,9 +37,7 @@ namespace AzMyStatusBin
                 //This will be used as a baseline. If table already exists, skip to next step
                 command.CommandText = @"REPLACE INTO azmy_metrics_collector.azmy_global_status (metric_name, origin_metric_value) select * from performance_schema.global_status;";
                 command.ExecuteNonQuery();
-                //int rowCount = command.ExecuteNonQueryAsync();
                 Console.WriteLine("Copied metric value from performance_schema");
-                //Console.WriteLine(String.Format("Number of rows inserted={0}", rowCount));
 
                 // Step 3, To get the difference between current metric value and previous checked value
                 /*
@@ -57,43 +55,43 @@ namespace AzMyStatusBin
                         (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
                     WHERE m.metric_name = g.VARIABLE_NAME;
                 */
-                command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, v.Variable_value AS logical_server_name from 
-                        (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
-                        (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m, 
-                        (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
-                        WHERE m.metric_name = g.VARIABLE_NAME;";
-                command.ExecuteNonQuery();
-                Console.WriteLine("Get the changed values and output it to a file");
+                // command.CommandText = @"select m.metric_name,g.VARIABLE_VALUE - m.origin_metric_value AS metric_value, v.Variable_value AS logical_server_name from 
+                //         (select VARIABLE_NAME,VARIABLE_VALUE from performance_schema.global_status) AS g,
+                //         (select metric_name,origin_metric_value from azmy_metrics_collector.azmy_global_status) AS m, 
+                //         (SELECT Variable_value FROM performance_schema.GLOBAL_VARIABLES WHERE VARIABLE_NAME = 'LOGICAL_SERVER_NAME') AS v
+                //         WHERE m.metric_name = g.VARIABLE_NAME;";
+                // command.ExecuteNonQuery();
+                // Console.WriteLine("Get the changed values and output it to a file");
 
-                using (var reader = command.ExecuteReader())
-                {
+                // using (var reader = command.ExecuteReader())
+                // {
 
-                    // if second parameter is true：append
-                    string directory_path = "/var/lib/custom/azMy-metrics-collector";
-                    string file_name = "azMy_global_status.log";
-                    if (!Directory.Exists(directory_path))
-                    {
-                        Directory.CreateDirectory(directory_path);
-                    }
-                    StreamWriter writer = new StreamWriter(Path.Combine(directory_path, file_name), true);
+                //     // if second parameter is true：append
+                //     string directory_path = "/var/lib/custom/azMy-metrics-collector";
+                //     string file_name = "azMy_global_status.log";
+                //     if (!Directory.Exists(directory_path))
+                //     {
+                //         Directory.CreateDirectory(directory_path);
+                //     }
+                //     StreamWriter writer = new StreamWriter(Path.Combine(directory_path, file_name), true);
 
-                    while (reader.Read())
-                    {
-                        DateTime dt = DateTime.Now;
+                //     while (reader.Read())
+                //     {
+                //         DateTime dt = DateTime.Now;
                         
-                        writer.Write(dt.GetDateTimeFormats('s')[0].ToString());
-                        writer.WriteLine(string.Format(" {0} {1} {2}", reader.GetString(0), reader.GetDouble(1), reader.GetString(2)));
+                //         writer.Write(dt.GetDateTimeFormats('s')[0].ToString());
+                //         writer.WriteLine(string.Format(" {0} {1} {2}", reader.GetString(0), reader.GetDouble(1), reader.GetString(2)));
 
-                    }
-                    writer.Close();
+                //     }
+                //     writer.Close();
 
-                }
+                // }
 
-                //step 4: Flush history table to make it as the next baseline
-                command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
-                    SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
-                command.ExecuteNonQuery();
-                Console.WriteLine("Updated history table");
+                // //step 4: Flush history table to make it as the next baseline
+                // command.CommandText = @"UPDATE azmy_metrics_collector.azmy_global_status m, performance_schema.global_status g
+                //     SET m.origin_metric_value = g.VARIABLE_VALUE WHERE m.metric_name = g.VARIABLE_NAME;";
+                // command.ExecuteNonQuery();
+                // Console.WriteLine("Updated history table");
             }
 
         }
