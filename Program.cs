@@ -28,7 +28,7 @@ namespace AzureMySQLMetricsCollector
 
             // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
             // Hence instrumentation key must be specified here.
-            services.AddApplicationInsightsTelemetryWorkerService("aa7c610a-626a-469e-84b0-3d552d2a2c3c");
+            services.AddApplicationInsightsTelemetryWorkerService("xxxxxxxxx");
 
             // Build ServiceProvider.
             IServiceProvider serviceProvider = services.BuildServiceProvider();
